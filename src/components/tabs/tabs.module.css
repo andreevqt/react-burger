@@ -1,0 +1,18 @@
+.tabs {
+  display: flex;
+  flex-direction: column;
+}
+
+.tabs-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.tabs-list {
+  display: flex;
+}
+
+.tab-item {
+  flex: 1 0 auto;
+}

@@ -1,0 +1,25 @@
+.item {
+  display: flex;
+  align-items: center;
+}
+
+.item svg {
+  margin-right: calc(var(--offset-base-size) * 2);
+  flex: 0 0 auto;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.price {
+  display: flex;
+  align-items: center;
+}
+
+.price svg {
+  width: 36px;
+  height: 36px;
+}
