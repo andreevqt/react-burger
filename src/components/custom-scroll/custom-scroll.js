@@ -23,11 +23,14 @@ const CustomScroll = ({children, className = '', scrollToCount, threshold = 40})
     }
 
     el.style.height = height || el.style.height;
-  }
+  };
 
   useEffect(() => {
     window.addEventListener('resize', adjustHeight);
-  }, [])
+    return () => {
+      window.removeEventListener('resize', adjustHeight);
+    };
+  }, []);
 
   useEffect(() => {
     adjustHeight();

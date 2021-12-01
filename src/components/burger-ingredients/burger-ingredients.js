@@ -50,9 +50,9 @@ const BurgerIngredients = ({
         <h5 className={`${burgerIngredientsStyles['tabs-label']} text_type_main-medium mt-10`}>{label}</h5>
         <Grid>
           {
-            items.map((item, idx) => item.type === current ? (
+            items.map((item) => item.type === current ? (
               <IngredientCard
-                key={idx}
+                key={item._id}
                 {...item}
               />
             ) : null)

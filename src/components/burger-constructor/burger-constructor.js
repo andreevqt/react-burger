@@ -15,13 +15,13 @@ const BurgerConstructor = ({items}) => {
       {
         bun &&
         <div className={`${burgerConstructorStyles['item']} pl-12 pr-6 mb-4`}>
-          <ConstructorElement thumbnail={bun.image} price={bun.price} text={bun.name} type="top" isLocked={true} />
+          <ConstructorElement thumbnail={bun.image} price={bun.price} text={`${bun.name} (верх)`} type="top" isLocked={true} />
         </div>
       }
       <CustomScroll scrollToCount={4} className="pl-4 pr-4">
         {
           rest.map((item, idx) => (
-            <div key={idx} className={`${burgerConstructorStyles['item']} ${idx < rest.length - 1 ? 'mb-4' : ''}`}>
+            <div key={item._id} className={`${burgerConstructorStyles['item']} ${idx < rest.length - 1 ? 'mb-4' : ''}`}>
               <DragIcon />
               <ConstructorElement
                 text={item.name}
@@ -35,7 +35,7 @@ const BurgerConstructor = ({items}) => {
       {
         bun &&
         <div className={`${burgerConstructorStyles['item']} pl-12 pr-6 mt-4`}>
-          <ConstructorElement thumbnail={bun.image} price={bun.price} text={bun.name} type="bottom" isLocked={true} />
+          <ConstructorElement thumbnail={bun.image} price={bun.price} text={`${bun.name} (низ)`} type="bottom" isLocked={true} />
         </div>
       }
       <div className={`${burgerConstructorStyles['buttons']} mt-10`}>
