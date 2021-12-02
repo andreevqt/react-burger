@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useMemo} from "react";
 import PropTypes from 'prop-types';
 import {ConstructorElement, DragIcon, Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import burgerConstructorStyles from './burger-constructor.module.css';
@@ -6,9 +6,12 @@ import CustomScroll from '../custom-scroll/custom-scroll';
 import {dataProptypes} from '../../utils/data';
 
 const BurgerConstructor = ({items}) => {
-  const bun = items.find(item => item.type === 'bun');
-  const rest = items.filter(item => item.type !== 'bun');
-  const totalPrice = rest.reduce((acc, item) => acc + item.price, bun ? bun.price * 2 : 0);
+  const {bun, rest, totalPrice} = useMemo(() => {
+    const bun = items.find(item => item.type === 'bun');
+    const rest = items.filter(item => item.type !== 'bun');
+    const totalPrice = rest.reduce((acc, item) => acc + item.price, bun ? bun.price * 2 : 0);
+    return {bun, rest, totalPrice};
+  }, [items]);
 
   return (
     <div className="pt-25">
