@@ -1,0 +1,32 @@
+.card {
+  position: relative;
+}
+
+.header {
+  
+}
+
+.body {
+}
+
+.counter {
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.title {
+  margin: 0;
+  text-align: center;
+}
+
+.price {
+  display: flex;
+  justify-content: center;
+}
+
+.price span{
+  margin-right: calc(var(--offset-base-size) * 2);
+}

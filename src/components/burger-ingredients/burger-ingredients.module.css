@@ -1,0 +1,11 @@
+.tabs-container {
+  display: flex;
+}
+
+.grid {
+  display: grid;
+}
+
+.tabs-label {
+  margin-bottom: 0;
+}

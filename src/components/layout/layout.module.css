@@ -1,0 +1,48 @@
+.col-base {
+  position: relative;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.row {
+  margin: 0 -20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.col {
+  composes: col-base;
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+}
+
+.col-3 {
+  composes: col-base;
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.col-6 {
+  composes: col-base;
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.col-auto {
+  composes: col-base;
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+
+.half {
+  flex: 0 0 50%;
+  max-width: 50%;
+}

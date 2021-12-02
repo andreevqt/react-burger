@@ -1,0 +1,8 @@
+.header {
+  background-color: var(--background);
+}
+
+.container {
+  display: flex;
+  align-items: center;
+}
