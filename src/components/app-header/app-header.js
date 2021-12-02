@@ -33,7 +33,7 @@ const AppHeader = () => {
         </Menu>
       </Container>
     </header>
-  )
-}
+  );
+};
 
 export default AppHeader;

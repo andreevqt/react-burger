@@ -22,10 +22,10 @@ const IngredientCard = ({image, name, price, count}) => {
 };
 
 IngredientCard.propTypes = {
+  count: PropTypes.number,
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  count: PropTypes.number
-}
+  price: PropTypes.number.isRequired
+};
 
 export default IngredientCard;

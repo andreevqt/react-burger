@@ -45,13 +45,13 @@ const CustomScroll = ({children, className = '', scrollToCount, threshold = 40})
 };
 
 CustomScroll.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node)
-  ]),
   className: PropTypes.string,
   scrollToCount: PropTypes.number,
   threshold: PropTypes.number,
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node)
+  ]).isRequired
 };
 
 export default CustomScroll;

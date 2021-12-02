@@ -51,11 +51,11 @@ const BurgerConstructor = ({items}) => {
         </Button>
       </div>
     </div>
-  )
-}
+  );
+};
 
 BurgerConstructor.propTypes = {
-  items: PropTypes.arrayOf(dataProptypes)
-}
+  items: PropTypes.arrayOf(dataProptypes).isRequired
+};
 
 export default BurgerConstructor;

@@ -29,7 +29,7 @@ Grid.propTypes = {
   gap: PropTypes.string,
   columns: PropTypes.string,
   children: PropTypes.arrayOf(PropTypes.element)
-}
+};
 
 const BurgerIngredients = ({
   items
@@ -60,11 +60,11 @@ const BurgerIngredients = ({
         </Grid>
       </Tabs>
     </>
-  )
+  );
 };
 
 BurgerIngredients.propTypes = {
-  items: PropTypes.arrayOf(dataProptypes)
+  items: PropTypes.arrayOf(dataProptypes).isRequired
 };
 
 export default BurgerIngredients;

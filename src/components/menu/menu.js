@@ -11,11 +11,11 @@ const Menu = ({children, className = '', ...rest}) => {
 };
 
 Menu.propTypes = {
+  className: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
-  ]),
-  className: PropTypes.string,
+  ]).isRequired
 };
 
 const MenuItem = ({linkTo = '/', active, children, className = '', ...rest}) => {
@@ -27,10 +27,13 @@ const MenuItem = ({linkTo = '/', active, children, className = '', ...rest}) => 
 };
 
 MenuItem.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
-  linkTo: PropTypes.string,
-  active: PropTypes.bool
+  active: PropTypes.bool,
+  linkTo: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]).isRequired
 };
 
 export {Menu, MenuItem};

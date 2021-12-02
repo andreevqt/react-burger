@@ -28,21 +28,21 @@ const Tabs = ({current, onClick, children, tabs, className = '', ...rest}) => {
         {children}
       </div>
     </div>
-  )
+  );
 };
 
 Tabs.propTypes = {
+  className: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node)
-  ]),
-  onClick: PropTypes.func,
-  className: PropTypes.string,
-  current: PropTypes.string,
+  ]).isRequired,
+  onClick: PropTypes.func.isRequired,
+  current: PropTypes.string.isRequired,
   tabs: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string,
-    value: PropTypes.string
-  }))
+    label: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired
+  })).isRequired
 };
 
 export default Tabs;
