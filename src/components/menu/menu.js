@@ -2,7 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import menuStyles from './menu.module.css';
 
-const Menu = ({children, className = '', ...rest}) => {
+const Menu = ({
+  className = '',
+  children,
+  ...rest
+}) => {
   return (
     <nav className={`${menuStyles['menu']} ${className}`} {...rest}>
       {children}
@@ -18,9 +22,19 @@ Menu.propTypes = {
   ]).isRequired
 };
 
-const MenuItem = ({linkTo = '/', active, children, className = '', ...rest}) => {
+const MenuItem = ({
+  className = '',
+  linkTo = '/',
+  active,
+  children,
+  ...rest
+}) => {
   return (
-    <a className={`text_type_main-default pl-5 pr-5 pt-4 pb-4 ${menuStyles['menu-item']} ${active ? menuStyles['active'] : ''} ${className}`} href={linkTo} {...rest}>
+    <a
+      className={`${menuStyles['menu-item']} ${active ? menuStyles['active'] : ''} text text_type_main-default pl-5 pr-5 pt-4 pb-4 ${className}`}
+      href={linkTo}
+      {...rest}
+    >
       {children}
     </a>
   )

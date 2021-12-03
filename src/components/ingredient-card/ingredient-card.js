@@ -3,9 +3,15 @@ import PropTypes from 'prop-types';
 import ingredientCardStyles from './ingredient-card.module.css';
 import {Counter, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 
-const IngredientCard = ({image, name, price, count}) => {
+const IngredientCard = ({
+  image,
+  name,
+  price,
+  count,
+  onClick
+}) => {
   return (
-    <div className={ingredientCardStyles['card']}>
+    <div className={ingredientCardStyles['card']} onClick={onClick}>
       <div className={`${ingredientCardStyles['header']} pl-4 pr-4`}>
         <img className={ingredientCardStyles['image']} src={image} alt={name} />
         {count && <Counter count={1} size="default" />}
@@ -25,7 +31,8 @@ IngredientCard.propTypes = {
   count: PropTypes.number,
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired
+  price: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired
 };
 
 export default IngredientCard;

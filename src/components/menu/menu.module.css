@@ -1,6 +1,5 @@
 .menu {
   display: flex;
-  flex-direction: row;
   flex-wrap: nowrap;
 }
 
@@ -12,7 +11,7 @@
 }
 
 .menu-item svg {
-  margin-right: calc((--offset-base-size) * 2);
+  margin-right: calc(var(--offset-base-size) * 2); 
   fill: var(--text-inactive-color);
 }
 

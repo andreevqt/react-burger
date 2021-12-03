@@ -3,9 +3,16 @@ import PropTypes from 'prop-types';
 import {Container} from '../layout/layout';
 import mainStyles from './main.module.css';
 
-const Main = ({children, className='', ...rest}) => {
+const Main = ({
+  className = '',
+  children,
+  ...rest
+}) => {
   return (
-    <main className={`${mainStyles['main']} ${className}`} {...rest}>
+    <main
+      className={`${mainStyles['main']} ${className}`}
+      {...rest}
+    >
       <Container>
         {children}
       </Container>

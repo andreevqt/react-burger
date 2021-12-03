@@ -2,7 +2,13 @@ import React, {useRef, useEffect} from "react";
 import PropTypes from 'prop-types';
 import scrollStyles from './custom-scroll.module.css';
 
-const CustomScroll = ({children, className = '', scrollToCount, threshold = 40}) => {
+const CustomScroll = ({
+  className = '',
+  children,
+  scrollToCount,
+  threshold = 40,
+  onScroll = () => null
+}) => {
   const container = useRef(null);
 
   const adjustHeight = () => {
@@ -18,6 +24,7 @@ const CustomScroll = ({children, className = '', scrollToCount, threshold = 40})
         const lastItemRect = kid.getBoundingClientRect();
         height = `${lastItemRect.top + lastItemRect.height - elRect.top}px`;
       }
+      container.current.scrollTo(0, 0);
     } else {
       height = `${window.innerHeight - elRect.top - threshold}px`;
     }
@@ -25,10 +32,17 @@ const CustomScroll = ({children, className = '', scrollToCount, threshold = 40})
     el.style.height = height || el.style.height;
   };
 
+  const onElementScroll = (e) => {
+    onScroll(container.current);
+  };
+
   useEffect(() => {
     window.addEventListener('resize', adjustHeight);
+    container.current.addEventListener('scroll', onElementScroll);
+
     return () => {
       window.removeEventListener('resize', adjustHeight);
+      container.current.removeEventListener('scroll', onElementScroll);
     };
   }, []);
 
@@ -39,15 +53,21 @@ const CustomScroll = ({children, className = '', scrollToCount, threshold = 40})
   // Дочерние элементы не помещаются целиком до scrollToCount из-за того что в ConstructorElement
   // нет placeholder'a картинки и не представляется возможным посчитать точно высоту
   // элемента пока изображение не загружено
-  return (<div /* onLoad={adjustHeight} */ className={`custom-scroll ${scrollStyles.scroll} ${className}`} ref={container}>
-    {children}
-  </div>);
+  return (
+    <div
+      className={`custom-scroll ${scrollStyles.scroll} ${className}`}
+      ref={container}
+    >
+      {children}
+    </div>
+  );
 };
 
 CustomScroll.propTypes = {
   className: PropTypes.string,
   scrollToCount: PropTypes.number,
   threshold: PropTypes.number,
+  onScroll: PropTypes.func,
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node)

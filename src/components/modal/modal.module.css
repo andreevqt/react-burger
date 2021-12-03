@@ -1,0 +1,43 @@
+.portal {
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  background-color: rgba(var(--colors-interface-overlay), 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  position: relative;
+  min-width: 720px;
+  border-radius: var(--border-radius);
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.status {
+}
+
+.description {
+}
+
+.close-btn {
+  display: inline-flex;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 60px;
+  right: 40px;
+}

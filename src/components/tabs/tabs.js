@@ -3,25 +3,36 @@ import PropTypes from 'prop-types';
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 import tabStyles from './tabs.module.css';
 
-const Tabs = ({current, onClick, children, tabs, className = '', ...rest}) => {
+const Tabs = ({
+  className = '',
+  current,
+  onClick,
+  children,
+  tabs,
+  ...rest
+}) => {
   return (
-    <div className={`${tabStyles['tabs']} ${className}`} {...rest}>
+    <div
+      className={`${tabStyles['tabs']} ${className}`}
+      {...rest}
+    >
       <div className={tabStyles['tabs-list']}>
         {
-          tabs.map((tab, idx) => (
-            <div
-              key={idx}
-              className={tabStyles['tab-item']}
-            >
-              <Tab
-                value={tab.value}
-                active={tab.value === current}
-                onClick={onClick}
+          Object.keys(tabs)
+            .map((key, idx) => (
+              <div
+                key={idx}
+                className={tabStyles['tab-item']}
               >
-                {tab.label}
-              </Tab>
-            </div>
-          ))
+                <Tab
+                  value={key}
+                  active={key === current}
+                  onClick={onClick}
+                >
+                  {tabs[key]}
+                </Tab>
+              </div>
+            ))
         }
       </div>
       <div className={tabStyles['tabs-content']}>
@@ -39,10 +50,7 @@ Tabs.propTypes = {
   ]).isRequired,
   onClick: PropTypes.func.isRequired,
   current: PropTypes.string.isRequired,
-  tabs: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired
-  })).isRequired
+  tabs: PropTypes.object.isRequired
 };
 
 export default Tabs;
