@@ -1,6 +1,6 @@
 import {Modal} from '../modal/modal';
 import ingredientDetailsStyles from './ingredient-details.module.css';
-import PropTypes, {func} from 'prop-types';
+import PropTypes from 'prop-types';
 import {dataProptypes} from '../../utils/data';
 
 const IngredientDetails = ({

@@ -1,5 +1,5 @@
-import React, {useState, useEffect, useRef, useMemo} from 'react';
-import PropTypes, {objectOf} from 'prop-types';
+import React, {useState, useRef, useMemo} from 'react';
+import PropTypes from 'prop-types';
 import burgerIngredientsStyles from './burger-ingredients.module.css';
 import Tabs from '../tabs/tabs';
 import IngredientCard from '../ingredient-card/ingredient-card';
@@ -75,7 +75,7 @@ const BurgerIngredients = ({
     const nearest = Object.keys(itemsRefs.current).reduce((acc, type) => {
       const el = itemsRefs.current[type];
       const diff = Math.abs(scrollContainer.scrollTop - el.offsetTop);
-      if (acc && diff < acc.diff || !acc) {
+      if ((acc && diff < acc.diff) || !acc) {
         acc = {el, diff, type};
       }
       return acc;

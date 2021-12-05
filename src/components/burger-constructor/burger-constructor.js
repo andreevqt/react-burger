@@ -79,7 +79,6 @@ const BurgerConstructor = ({items}) => {
       </div>
       <OrderDetails
         isOpen={isOpen}
-        onRequestClose={() => setIsOpen(false)}
         orderId="034536"
         status="Ваш заказ начали готовить"
         onRequestClose={() => setIsOpen(false)}

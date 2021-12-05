@@ -37,12 +37,13 @@ const CustomScroll = ({
   };
 
   useEffect(() => {
+    let el = container.current;
     window.addEventListener('resize', adjustHeight);
-    container.current.addEventListener('scroll', onElementScroll);
+    el.addEventListener('scroll', onElementScroll);
 
     return () => {
       window.removeEventListener('resize', adjustHeight);
-      container.current.removeEventListener('scroll', onElementScroll);
+      el.removeEventListener('scroll', onElementScroll);
     };
   }, []);
 
