@@ -13,7 +13,7 @@ const Tabs = ({
 }) => {
   return (
     <div
-      className={`${tabStyles['tabs']} ${className}`}
+      className={className}
       {...rest}
     >
       <div className={tabStyles['tabs-list']}>
@@ -35,9 +35,7 @@ const Tabs = ({
             ))
         }
       </div>
-      <div className={tabStyles['tabs-content']}>
-        {children}
-      </div>
+      {children}
     </div>
   );
 };
