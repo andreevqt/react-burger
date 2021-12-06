@@ -4,7 +4,8 @@ import {ConstructorElement, DragIcon, Button, CurrencyIcon} from '@ya.praktikum/
 import burgerConstructorStyles from './burger-constructor.module.css';
 import CustomScroll from '../custom-scroll/custom-scroll';
 import {dataProptypes} from '../../utils/data';
-import OrderDetails from "../order-details/order-details";
+import OrderDetails from '../order-details/order-details';
+import Modal from '../modal/modal';
 
 const BurgerConstructor = ({items}) => {
   const {bun, rest, totalPrice} = useMemo(() => {
@@ -39,7 +40,7 @@ const BurgerConstructor = ({items}) => {
           rest.map((item, idx) => (
             <div
               className={`${burgerConstructorStyles['item']} ${idx < rest.length - 1 ? 'mb-4' : ''}`}
-              key={item._id}
+              key={`${item._id}-${idx}`}
             >
               <DragIcon />
               <ConstructorElement
@@ -77,12 +78,19 @@ const BurgerConstructor = ({items}) => {
           Оформить заказ
         </Button>
       </div>
-      <OrderDetails
-        isOpen={isOpen}
-        orderId="034536"
-        status="Ваш заказ начали готовить"
-        onRequestClose={() => setIsOpen(false)}
-      />
+      {
+        isOpen && (
+          <Modal
+            className="pt-30 pr-25 pb-30 pl-25"
+            onRequestClose={() => setIsOpen(false)}
+          >
+            <OrderDetails
+              orderId="034536"
+              status="Ваш заказ начали готовить"
+            />
+          </Modal>
+        )
+      }
     </div>
   );
 };

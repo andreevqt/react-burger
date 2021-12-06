@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from "react";
+import React, {useRef, useEffect, useCallback} from "react";
 import PropTypes from 'prop-types';
 import scrollStyles from './custom-scroll.module.css';
 
@@ -11,7 +11,7 @@ const CustomScroll = ({
 }) => {
   const container = useRef(null);
 
-  const adjustHeight = () => {
+  const adjustHeight = useCallback(() => {
     let height;
 
     const el = container.current;
@@ -30,14 +30,14 @@ const CustomScroll = ({
     }
 
     el.style.height = height || el.style.height;
-  };
-
-  const onElementScroll = (e) => {
-    onScroll(container.current);
-  };
+  }, [scrollToCount, threshold]);
 
   useEffect(() => {
-    let el = container.current;
+    const onElementScroll = (e) => {
+      onScroll(container.current);
+    };
+
+    const el = container.current;
     window.addEventListener('resize', adjustHeight);
     el.addEventListener('scroll', onElementScroll);
 
@@ -45,11 +45,11 @@ const CustomScroll = ({
       window.removeEventListener('resize', adjustHeight);
       el.removeEventListener('scroll', onElementScroll);
     };
-  }, []);
+  }, [adjustHeight]);
 
   useEffect(() => {
     adjustHeight();
-  }, [children]);
+  }, [children, adjustHeight]);
 
   // Дочерние элементы не помещаются целиком до scrollToCount из-за того что в ConstructorElement
   // нет placeholder'a картинки и не представляется возможным посчитать точно высоту

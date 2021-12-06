@@ -6,17 +6,9 @@
   align-items: center;
 }
 
-.id, 
-.title {
-  
-}
-
-.title {
-  
-}
-
 .id {
-  text-shadow: 0px 0px 16px rgba(var(--colors-interface-glow), 0.25), 0px 0px 8px rgba(var(--colors-interface-glow), 0.25), 0px 4px 32px rgba(var(--colors-interface-glow), 0.5);
+  text-shadow: 0px 0px 16px rgba(var(--colors-interface-glow), 0.25),
+    0px 0px 8px rgba(var(--colors-interface-glow), 0.25), 0px 4px 32px rgba(var(--colors-interface-glow), 0.5);
 }
 
 .close-btn {

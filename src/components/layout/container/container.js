@@ -1,20 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import menuStyles from './menu.module.css';
+import containerStyles from './container.module.css';
 
-const Menu = ({
+const Container = ({
   className = '',
   children,
   ...rest
 }) => {
   return (
-    <nav className={`${menuStyles['menu']} ${className}`} {...rest}>
+    <div
+      className={`${containerStyles['container']} ${className}`}
+      {...rest}
+    >
       {children}
-    </nav>
+    </div>
   );
 };
 
-Menu.propTypes = {
+Container.propTypes = {
   className: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.node,
@@ -22,4 +25,4 @@ Menu.propTypes = {
   ]).isRequired
 };
 
-export default Menu;
+export default Container;

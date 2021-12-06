@@ -1,21 +1,13 @@
-import {Modal} from '../modal/modal';
+import React from 'react';
 import ingredientDetailsStyles from './ingredient-details.module.css';
 import PropTypes from 'prop-types';
 import {dataProptypes} from '../../utils/data';
 
 const IngredientDetails = ({
-  onRequestClose,
-  ingredient,
-  isOpen,
-  ...rest
+  ingredient
 }) => {
   return (
-    <Modal
-      className={`${ingredientDetailsStyles['card']} pt-10 pr-10 pb-15 pl-10`}
-      isOpen={isOpen}
-      onRequestClose={onRequestClose}
-      {...rest}
-    >
+    <>
       <h5 className={`${ingredientDetailsStyles['title']} text text_type_main-large pr-7`}>
         Детали ингредиента
       </h5>
@@ -57,14 +49,12 @@ const IngredientDetails = ({
           </span>
         </div>
       </div>
-    </Modal>
+    </>
   );
 };
 
-IngredientDetails.prototype = {
+IngredientDetails.propTypes = {
   ingredient: dataProptypes,
-  onRequestClose: PropTypes.func,
-  isOpen: PropTypes.bool
 };
 
 export default IngredientDetails;

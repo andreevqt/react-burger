@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Container} from '../layout/layout';
-import mainStyles from './main.module.css';
+import Container from '../layout/container/container';
 
 const Main = ({
   className = '',
@@ -10,7 +9,7 @@ const Main = ({
 }) => {
   return (
     <main
-      className={`${mainStyles['main']} ${className}`}
+      className={className}
       {...rest}
     >
       <Container>
@@ -21,8 +20,11 @@ const Main = ({
 };
 
 Main.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string
+  className: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]).isRequired,
 };
 
 export default Main;

@@ -12,17 +12,15 @@ const IngredientCard = ({
 }) => {
   return (
     <div className={ingredientCardStyles['card']} onClick={onClick}>
-      <div className={`${ingredientCardStyles['header']} pl-4 pr-4`}>
+      <div className="pl-4 pr-4">
         <img className={ingredientCardStyles['image']} src={image} alt={name} />
-        {count && <Counter count={1} size="default" />}
+        {count && <Counter count={count} size="default" />}
       </div>
-      <div className={ingredientCardStyles['body']}>
-        <div className={`${ingredientCardStyles['price']} mt-1 mb-1`}>
-          <span className="text_type_digits-default">{price}</span>
-          <CurrencyIcon />
-        </div>
-        <h5 className={`${ingredientCardStyles['title']} text_type_main-default`}>{name}</h5>
+      <div className={`${ingredientCardStyles['price']} mt-1 mb-1`}>
+        <span className="text_type_digits-default">{price}</span>
+        <CurrencyIcon />
       </div>
+      <h5 className={`${ingredientCardStyles['title']} text_type_main-default`}>{name}</h5>
     </div>
   );
 };

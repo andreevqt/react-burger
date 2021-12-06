@@ -3,7 +3,8 @@ import AppHeader from '../app-header/app-header';
 import Main from '../main/main';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
-import {Col, Row} from '../layout/layout';
+import Col from '../layout/col/col';
+import Row from '../layout/row/row';
 import {API_SERVER_URL} from '../../constants';
 
 const App = () => {
@@ -42,7 +43,7 @@ const App = () => {
         setItems(items);
       })
       .catch((err) => setError(err.message));
-      
+
     fetchData();
   }, []);
 
@@ -52,7 +53,7 @@ const App = () => {
       <Main>
         {
           error
-            ? <p className="text text_type_main-medium mt-10">Ошибка! {error} </p>
+            ? <p className="text text_type_main-medium mt-10">Ошибка! {error}</p>
             : (
               <Row>
                 <Col mod="6">

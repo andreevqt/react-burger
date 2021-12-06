@@ -1,4 +1,4 @@
-import React, {useState, useRef, useMemo} from 'react';
+import React, {useState, useRef, useMemo, useCallback} from 'react';
 import PropTypes from 'prop-types';
 import burgerIngredientsStyles from './burger-ingredients.module.css';
 import Tabs from '../tabs/tabs';
@@ -7,35 +7,7 @@ import CustomScroll from '../custom-scroll/custom-scroll';
 import {dataProptypes} from '../../utils/data';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import throttle from '../../utils/throttle';
-
-const Grid = ({
-  gap = 'calc(var(--offset-base-size) * 10) calc(var(--offset-base-size) * 6)',
-  columns = '1fr 1fr',
-  children
-}) => {
-  const styles = {
-    gap,
-    gridTemplateColumns: columns
-  };
-
-  return (
-    <div
-      className={`${burgerIngredientsStyles['grid']}`}
-      style={styles}
-    >
-      {children}
-    </div>
-  );
-};
-
-Grid.propTypes = {
-  gap: PropTypes.string,
-  columns: PropTypes.string,
-  children: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ])
-};
+import Modal from '../modal/modal';
 
 const BurgerIngredients = ({
   items
@@ -71,7 +43,7 @@ const BurgerIngredients = ({
     ))
   );
 
-  const handleOnScroll = throttle((scrollContainer) => {
+  const handleOnScroll = useCallback(throttle((scrollContainer) => {
     const nearest = Object.keys(itemsRefs.current).reduce((acc, type) => {
       const el = itemsRefs.current[type];
       const diff = Math.abs(scrollContainer.scrollTop - el.offsetTop);
@@ -81,7 +53,7 @@ const BurgerIngredients = ({
       return acc;
     }, null);
     setCurrentTab(nearest.type);
-  }, 100);
+  }, 100), []);
 
   const onTabClick = (tab) => {
     const el = itemsRefs.current[tab];
@@ -112,19 +84,26 @@ const BurgerIngredients = ({
                 >
                   {tabs[type]}
                 </h5>
-                <Grid>
+                <div className={burgerIngredientsStyles['grid']}>
                   {renderIngredients(type)}
-                </Grid>
+                </div>
               </div>
             ))
           }
         </CustomScroll>
       </Tabs>
-      <IngredientDetails
-        isOpen={isOpen}
-        onRequestClose={() => setIsOpen(false)}
-        ingredient={currentItem}
-      />
+      {
+        isOpen && (
+          <Modal
+            className="pt-10 pr-10 pb-15 pl-10"
+            onRequestClose={() => setIsOpen(false)}
+          >
+            <IngredientDetails
+              ingredient={currentItem}
+            />
+          </Modal>
+        )
+      }
     </>
   );
 };

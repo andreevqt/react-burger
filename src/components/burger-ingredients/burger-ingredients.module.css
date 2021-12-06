@@ -4,8 +4,6 @@
 
 .grid {
   display: grid;
-}
-
-.tabs-label {
-  
+  grid-template-columns: 1fr 1fr;
+  grid-gap: calc(var(--offset-base-size) * 10) calc(var(--offset-base-size) * 6);
 }

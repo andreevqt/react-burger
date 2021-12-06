@@ -1,6 +1,7 @@
 import React from 'react';
-import {Container} from '../layout/layout'
-import {Menu, MenuItem} from '../menu/menu';
+import Container from '../layout/container/container';
+import Menu from '../menu/menu';
+import MenuItem from '../menu/menu-item/menu-item';
 import appHeaderStyles from './app-header.module.css';
 import {BurgerIcon, ListIcon, Logo, ProfileIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 

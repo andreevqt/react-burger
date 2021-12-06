@@ -1,0 +1,11 @@
+.btn {
+  display: inline-flex;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 60px;
+  right: 40px;
+}

@@ -2,23 +2,3 @@
   display: flex;
   flex-wrap: nowrap;
 }
-
-.menu-item {
-  text-decoration: none;  
-  color: var(--text-inactive-color);
-  display: flex;
-  align-items: center;
-}
-
-.menu-item svg {
-  margin-right: calc(var(--offset-base-size) * 2); 
-  fill: var(--text-inactive-color);
-}
-
-.menu-item.active {
-  color: var(--text-primary-color);
-}
-
-.menu-item.active svg {
-  fill: var(--text-primary-color);
-}
