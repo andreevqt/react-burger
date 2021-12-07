@@ -1,6 +1,7 @@
 import React from 'react';
-import {Container} from '../layout/layout'
-import {Menu, MenuItem} from '../menu/menu';
+import Container from '../layout/container/container';
+import Menu from '../menu/menu';
+import MenuItem from '../menu/menu-item/menu-item';
 import appHeaderStyles from './app-header.module.css';
 import {BurgerIcon, ListIcon, Logo, ProfileIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 
@@ -9,26 +10,27 @@ const AppHeader = () => {
     <header className={`${appHeaderStyles.header} pb-4 pt-4`}>
       <Container className={appHeaderStyles.container}>
         <Menu className="flex-1 mr-auto">
-          <MenuItem linkTo="/constructor" className="mr-2 pl-0" active>
+          <MenuItem
+            className="mr-2 pl-0"
+            linkTo="/constructor"
+            active
+          >
             <BurgerIcon />
-            <span className="ml-2">
-              Конструктор
-            </span>
+            Конструктор
           </MenuItem>
           <MenuItem linkTo="/feed">
             <ListIcon />
-            <span className="ml-2">
-              Лента заказов
-            </span>
+            Лента заказов
           </MenuItem>
         </Menu>
         <Logo />
         <Menu className="flex-1 ml-auto">
-          <MenuItem linkTo="/feed" className='ml-auto pr-0'>
+          <MenuItem
+            className='ml-auto pr-0'
+            linkTo="/feed"
+          >
             <ProfileIcon />
-            <span className="ml-2">
-              Личный кабинет
-            </span>
+            Личный кабинет
           </MenuItem>
         </Menu>
       </Container>

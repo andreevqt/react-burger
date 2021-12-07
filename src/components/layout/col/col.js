@@ -1,20 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import menuStyles from './menu.module.css';
+import layoutStyles from './col.module.css';
 
-const Menu = ({
+const Col = ({
   className = '',
+  mod,
   children,
   ...rest
 }) => {
   return (
-    <nav className={`${menuStyles['menu']} ${className}`} {...rest}>
+    <div
+      className={`${layoutStyles[`col${mod ? `-${mod}` : ''}`]} ${className}`}
+      {...rest}
+    >
       {children}
-    </nav>
+    </div>
   );
 };
 
-Menu.propTypes = {
+Col.propTypes = {
+  mod: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.node,
@@ -22,4 +27,4 @@ Menu.propTypes = {
   ]).isRequired
 };
 
-export default Menu;
+export default Col;

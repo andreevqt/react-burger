@@ -1,15 +1,6 @@
 .card {
   position: relative;
-}
-
-.header {
-  
-}
-
-.body {
-}
-
-.counter {
+  cursor: pointer;
 }
 
 .image {

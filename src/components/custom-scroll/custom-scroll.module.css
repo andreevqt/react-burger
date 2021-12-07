@@ -1,9 +1,4 @@
 .scroll {
+  position: relative;
   overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.scroll > * {
-  height: 100%;
 }

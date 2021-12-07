@@ -1,20 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import menuStyles from './menu.module.css';
+import rowStyles from './row.module.css';
 
-const Menu = ({
+// TODO: implement grid system
+const Row = ({
   className = '',
   children,
   ...rest
 }) => {
   return (
-    <nav className={`${menuStyles['menu']} ${className}`} {...rest}>
+    <div
+      className={`${rowStyles['row']} ${className}`}
+      {...rest}
+    >
       {children}
-    </nav>
+    </div>
   );
 };
 
-Menu.propTypes = {
+Row.propTypes = {
   className: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.node,
@@ -22,4 +26,4 @@ Menu.propTypes = {
   ]).isRequired
 };
 
-export default Menu;
+export default Row;

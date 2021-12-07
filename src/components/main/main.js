@@ -1,11 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Container} from '../layout/layout';
-import mainStyles from './main.module.css';
+import Container from '../layout/container/container';
 
-const Main = ({children, className='', ...rest}) => {
+const Main = ({
+  className = '',
+  children,
+  ...rest
+}) => {
   return (
-    <main className={`${mainStyles['main']} ${className}`} {...rest}>
+    <main
+      className={className}
+      {...rest}
+    >
       <Container>
         {children}
       </Container>
@@ -14,8 +20,11 @@ const Main = ({children, className='', ...rest}) => {
 };
 
 Main.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string
+  className: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]).isRequired,
 };
 
 export default Main;
