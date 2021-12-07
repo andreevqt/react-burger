@@ -45,7 +45,7 @@ const CustomScroll = ({
       window.removeEventListener('resize', adjustHeight);
       el.removeEventListener('scroll', onElementScroll);
     };
-  }, [adjustHeight]);
+  }, [adjustHeight, onScroll]);
 
   useEffect(() => {
     adjustHeight();

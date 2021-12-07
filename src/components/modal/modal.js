@@ -16,23 +16,25 @@ const Modal = ({
   const containerRef = useRef(document.createElement('div'));
 
   useEffect(() => {
+    const container = containerRef.current;
+    document.body.appendChild(container);
+    document.body.classList.add(BODY_CLASS);
+    return () => {
+      document.body.removeChild(container);
+      document.body.classList.remove(BODY_CLASS);
+    };
+  }, []);
+
+  useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.keyCode === KEY_ESC) {
         e.stopPropagation();
         onRequestClose();
       }
     };
-  
-    const container = containerRef.current;
-    document.body.appendChild(container);
     document.addEventListener('keydown', handleKeyDown);
-    document.body.classList.add(BODY_CLASS);
-    return () => {
-      document.body.removeChild(container);
-      document.removeEventListener('keydown', handleKeyDown);
-      document.body.classList.remove(BODY_CLASS);
-    };
-  }, []);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [onRequestClose]);
 
   return ReactDOM.createPortal((
     <div className={modalStyles['modal']}>
