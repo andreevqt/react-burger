@@ -1,21 +1,57 @@
-import React, {useMemo, useState} from "react";
+import React, {useContext, useEffect, useMemo, useState} from "react";
 import PropTypes from 'prop-types';
 import {ConstructorElement, DragIcon, Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import burgerConstructorStyles from './burger-constructor.module.css';
 import CustomScroll from '../custom-scroll/custom-scroll';
-import {dataProptypes} from '../../utils/data';
 import OrderDetails from '../order-details/order-details';
 import Modal from '../modal/modal';
+import AppContext from '../../services/context/app';
+import shuffle from '../../utils/shuffle';
+import random from '../../utils/random';
+import {API_SERVER_URL} from '../../constants';
 
-const BurgerConstructor = ({items}) => {
+const BurgerConstructor = () => {
+  const {state, dispatch} = useContext(AppContext);
+  const [orderId, setOrderId] = useState(null);
+
   const {bun, rest, totalPrice} = useMemo(() => {
-    const bun = items.find(item => item.type === 'bun');
-    const rest = items.filter(item => item.type !== 'bun');
+    const shuffled = shuffle([...state.ingredients]);
+    const bun = shuffled.find(item => item.type === 'bun');
+    const rest = shuffled.filter(item => item.type !== 'bun').slice(0, random(1, shuffled.length));
     const totalPrice = rest.reduce((acc, item) => acc + item.price, bun ? bun.price * 2 : 0);
     return {bun, rest, totalPrice};
-  }, [items]);
+  }, [state.ingredients.length]);
+
+  useEffect(() => {
+    rest.forEach((item) => dispatch({type: 'add', payload: item}));
+  }, [rest, dispatch]);
+
+  useEffect(() => {
+    if (bun) {
+      dispatch({type: 'add', payload: {...bun, count: 2}});
+    }
+  }, [bun, dispatch]);
 
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleOrderClick = () => {
+    const ingredients = [...rest.map((item) => item._id), bun._id];
+    fetch(`${API_SERVER_URL}/orders`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ingredients})
+    }).then((response) => response.json())
+      .then(({success, order, message}) => {
+        dispatch({type: 'clear-error'});
+        if (!success) {
+          return new Error(message);
+        }
+        setOrderId(order.number);
+        setIsOpen(true);
+      }).catch((err) => dispatch({type: 'set-error', payload: err.message}));
+  };
 
   return (
     <div className="pt-25">
@@ -73,7 +109,7 @@ const BurgerConstructor = ({items}) => {
         <Button
           type="primary"
           size="large"
-          onClick={() => setIsOpen(true)}
+          onClick={handleOrderClick}
         >
           Оформить заказ
         </Button>
@@ -85,7 +121,7 @@ const BurgerConstructor = ({items}) => {
             onRequestClose={() => setIsOpen(false)}
           >
             <OrderDetails
-              orderId="034536"
+              orderId={orderId}
               status="Ваш заказ начали готовить"
             />
           </Modal>
@@ -93,10 +129,6 @@ const BurgerConstructor = ({items}) => {
       }
     </div>
   );
-};
-
-BurgerConstructor.propTypes = {
-  items: PropTypes.arrayOf(dataProptypes).isRequired
 };
 
 export default BurgerConstructor;

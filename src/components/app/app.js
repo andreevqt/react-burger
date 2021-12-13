@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useReducer} from 'react';
 import AppHeader from '../app-header/app-header';
 import Main from '../main/main';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
@@ -6,11 +6,16 @@ import BurgerConstructor from '../burger-constructor/burger-constructor';
 import Col from '../layout/col/col';
 import Row from '../layout/row/row';
 import {API_SERVER_URL} from '../../constants';
+import AppContext from '../../services/context/app';
+import appReducer from '../../services/reducers/app';
+
+const initialState = {
+  ingredients: [],
+  error: null
+};
 
 const App = () => {
-  const [items, setItems] = useState([]);
-  const [ordered, setOrdered] = useState([]);
-  const [error, setError] = useState(null);
+  const [state, dispatch] = useReducer(appReducer(initialState), initialState);
 
   useEffect(() => {
     const fetchData = () => fetch(`${API_SERVER_URL}/ingredients`)
@@ -23,50 +28,33 @@ const App = () => {
         });
       })
       .then(({data}) => {
-        const ordered = [
-          data[0],
-          data[1],
-          data[2],
-          data[3],
-          data[6],
-          data[5],
-          data[4],
-        ];
-        setOrdered(ordered);
-
-        const orderedMap = ordered.reduce((acc, item) => {
-          acc[item._id] = {...item, count: 1};
-          return acc;
-        }, {});
-
-        const items = data.map((item) => (orderedMap[item._id] || item));
-        setItems(items);
+        dispatch({type: 'set-ingredients', payload: data});
       })
-      .catch((err) => setError(err.message));
+      .catch((err) => dispatch({type: 'set-error', payload: err.message}));
 
     fetchData();
   }, []);
 
   return (
-    <>
+    <AppContext.Provider value={{state, dispatch}}>
       <AppHeader />
       <Main>
         {
-          error
-            ? <p className="text text_type_main-medium mt-10">Ошибка! {error}</p>
+          state.error
+            ? <p className="text text_type_main-medium mt-10">Ошибка! {state.error}</p>
             : (
               <Row>
                 <Col mod="6">
-                  <BurgerIngredients items={items} />
+                  <BurgerIngredients />
                 </Col>
                 <Col mod="6">
-                  <BurgerConstructor items={ordered} />
+                  <BurgerConstructor />
                 </Col>
               </Row>
             )
         }
       </Main>
-    </>
+    </AppContext.Provider>
   );
 };
 

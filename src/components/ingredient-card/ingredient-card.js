@@ -2,12 +2,15 @@ import React from "react";
 import PropTypes from 'prop-types';
 import ingredientCardStyles from './ingredient-card.module.css';
 import {Counter, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
+import {dataProptypes} from '../../utils/data';
 
 const IngredientCard = ({
-  image,
-  name,
-  price,
-  count,
+  ingredient: {
+    name,
+    price,
+    count,
+    image
+  },
   onClick
 }) => {
   return (
@@ -26,10 +29,7 @@ const IngredientCard = ({
 };
 
 IngredientCard.propTypes = {
-  count: PropTypes.number,
-  image: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
+  ingredient: dataProptypes,
   onClick: PropTypes.func.isRequired
 };
 

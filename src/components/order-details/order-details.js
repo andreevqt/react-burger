@@ -27,7 +27,7 @@ const OrderDetails = ({
 };
 
 OrderDetails.propTypes = {
-  orderId: PropTypes.string.isRequired,
+  orderId: PropTypes.number.isRequired,
   status: PropTypes.string.isRequired,
 };
 

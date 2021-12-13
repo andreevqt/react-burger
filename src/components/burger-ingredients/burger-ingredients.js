@@ -1,4 +1,4 @@
-import React, {useState, useRef, useMemo, useCallback} from 'react';
+import React, {useState, useRef, useMemo, useCallback, useContext} from 'react';
 import PropTypes from 'prop-types';
 import burgerIngredientsStyles from './burger-ingredients.module.css';
 import Tabs from '../tabs/tabs';
@@ -8,10 +8,9 @@ import {dataProptypes} from '../../utils/data';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import throttle from '../../utils/throttle';
 import Modal from '../modal/modal';
+import AppContext from '../../services/context/app';
 
-const BurgerIngredients = ({
-  items
-}) => {
+const BurgerIngredients = (props) => {
   const tabs = {
     bun: 'Булки',
     sauce: 'Соусы',
@@ -22,23 +21,24 @@ const BurgerIngredients = ({
   const [currentTab, setCurrentTab] = useState('bun');
   const [currentItem, setCurrentItem] = useState({});
   const [isOpen, setIsOpen] = useState(false);
+  const {state: {ingredients}} = useContext(AppContext);
 
   const itemsToRender = useMemo(() => (
-    items.reduce((acc, item) => {
+    ingredients.reduce((acc, item) => {
       acc[item.type] = [...acc[item.type], item];
       return acc;
     }, {bun: [], sauce: [], main: []})
-  ), [items]);
+  ), [ingredients]);
 
   const renderIngredients = (type) => (
     itemsToRender[type].map((item) => (
       <IngredientCard
         key={item._id}
+        ingredient={item}
         onClick={() => {
           setIsOpen(true);
           setCurrentItem(item);
         }}
-        {...item}
       />
     ))
   );
@@ -106,10 +106,6 @@ const BurgerIngredients = ({
       }
     </>
   );
-};
-
-BurgerIngredients.propTypes = {
-  items: PropTypes.arrayOf(dataProptypes).isRequired
 };
 
 export default BurgerIngredients;
