@@ -1,0 +1,36 @@
+@keyframes skeleton-animation {
+  from {
+    background-position: -200px 0;
+  }
+  to {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.skeleton {
+  border-radius: var(--skeleton-border-radius);
+  width: 100%;
+  background-size: 200px 100%;
+  background-repeat: no-repeat;
+  background-color: var(--colors-skeleton-base);
+  background-image: linear-gradient(
+    90deg,
+    var(--colors-skeleton-base),
+    var(--colors-skeleton-highlight),
+    var(--colors-skeleton-base)
+  );
+  animation: skeleton-animation 1.2s ease-in-out infinite;
+}
+
+.skeleton.rounded {
+  border-radius: 50%;
+}
+
+.skeleton.text {
+  display: inline-block;
+  line-height: 1;
+}
+
+.skeleton.rectangular {
+  border-radius: 3px;
+}

@@ -1,13 +1,18 @@
+/* eslint-disable */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import '@ya.praktikum/react-developer-burger-ui-components';
 import './index.css';
 import App from './components/app/app';
-import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import reportWebVitals from './reportWebVitals'; 
+import store from './services/store';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
