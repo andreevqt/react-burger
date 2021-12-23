@@ -1,0 +1,51 @@
+.item {
+  display: flex;
+  align-items: center;
+}
+
+.item svg {
+  margin-right: calc(var(--offset-base-size) * 2);
+  flex: 0 0 auto;
+}
+
+.handle {
+  display: inline-flex;
+  cursor: move;
+}
+
+.scroll {
+  max-height: 464px;
+}
+
+.wrapper {
+  position: relative;
+}
+
+.placeholder {
+  background: var(--background-element);
+  border-radius: var(--common-border-radius-s);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: calc(var(--offset-base-size) * 12);
+  right: calc(var(--offset-base-size) * 4);
+  bottom: 0;
+  border: 2px dashed var(--colors-interface-accent);
+  border-radius: var(--common-border-radius-s);
+  background-color: rgba(var(--colors-interface-accent-rgb), 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay-title {
+  background-color: var(--colors-interface-accent);
+  padding-left: calc(var(--offset-base-size) * 2);
+  padding-right: calc(var(--offset-base-size) * 2);
+}

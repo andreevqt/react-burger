@@ -1,7 +1,11 @@
 :root {
    --colors-interface-glow: 51, 51, 255;
    --colors-interface-overlay: 0, 0, 0;
+   --colors-interface-accent-rgb: 76, 76, 255;
+   --colors-skeleton-base: #2f2f37;
+   --colors-skeleton-highlight: #32323a;
    --border-radius: 30px;
+   --skeleton-border-radius: 3px;
 }
 
 *,
@@ -45,3 +49,14 @@
 .modal-is-shown {
   overflow: hidden;
 }
+
+/* fix width according to figma template */
+.custom-scroll::-webkit-scrollbar {
+	width: 8px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  border: none;
+  border-radius: 0;
+}
+

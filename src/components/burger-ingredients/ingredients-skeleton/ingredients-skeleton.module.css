@@ -1,19 +1,10 @@
-.tabs-container {
-  display: flex;
-}
-
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: calc(var(--offset-base-size) * 10) calc(var(--offset-base-size) * 6);
 }
 
-.item {
+.card {
   display: flex;
-  align-items: center;
-}
-
-.item svg {
-  margin-right: calc(var(--offset-base-size) * 2);
-  flex: 0 0 auto;
+  flex-direction: column;
 }

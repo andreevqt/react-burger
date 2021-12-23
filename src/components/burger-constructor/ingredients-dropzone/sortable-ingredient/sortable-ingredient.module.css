@@ -1,0 +1,14 @@
+.item {
+  display: flex;
+  align-items: center;
+}
+
+.item svg {
+  margin-right: calc(var(--offset-base-size) * 2);
+  flex: 0 0 auto;
+}
+
+.handle {
+  display: inline-flex;
+  cursor: move;
+}

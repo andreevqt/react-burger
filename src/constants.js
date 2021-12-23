@@ -1,7 +1,2 @@
-const API_SERVER_URL = 'https://norma.nomoreparties.space/api';
-const KEY_ESC = 27;
-
-export {
-  API_SERVER_URL,
-  KEY_ESC
-};
+export const API_SERVER_URL = 'https://norma.nomoreparties.space/api';
+export const KEY_ESC = 27;
