@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import AppHeader from '../app-header/app-header';
 import Main from '../main/main';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
@@ -26,14 +28,16 @@ const App = () => {
             {error}
           </p>
         ) : (
-          <Row>
-            <Col mod="6">
-              <BurgerIngredients />
-            </Col>
-            <Col mod="6">
-              <BurgerConstructor />
-            </Col>
-          </Row>
+          <DndProvider backend={HTML5Backend}>
+            <Row>
+              <Col mod="6">
+                <BurgerIngredients />
+              </Col>
+              <Col mod="6">
+                <BurgerConstructor />
+              </Col>
+            </Row>
+          </DndProvider>
         )}
       </Main>
     </>
