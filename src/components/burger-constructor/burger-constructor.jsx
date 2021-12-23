@@ -1,5 +1,7 @@
 import React, { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import OrderDetails from '../order-details/order-details';
 import Modal from '../modal/modal';
 import BunDropzone from './bun-dropzone/bun-dropzone';
@@ -53,41 +55,43 @@ const BurgerConstructor = () => {
   const canOrder = items.length > 0 && !!bun;
 
   return (
-    <div className="pt-25">
-      <BunDropzone
-        type="top"
-        bun={bun}
-        onDrop={onItemAdd}
-      />
-      <IngredientsDropzone
-        items={items}
-        onDrop={onItemAdd}
-        onItemDelete={onDelete}
-        moveItem={moveItem}
-      />
-      <BunDropzone
-        type="bottom"
-        bun={bun}
-        onDrop={onItemAdd}
-      />
-      <Buttons
-        totalPrice={totalPrice}
-        isLoading={isLoading}
-        onSubmit={onSubmit}
-        canOrder={canOrder}
-      />
-      {order && order.id && (
-        <Modal
-          className="pt-30 pr-25 pb-30 pl-25"
-          onRequestClose={onRequestClose}
-        >
-          <OrderDetails
-            orderId={order.id}
-            status="Ваш заказ начали готовить"
-          />
-        </Modal>
-      )}
-    </div>
+    <DndProvider backend={HTML5Backend}>
+      <div className="pt-25">
+        <BunDropzone
+          type="top"
+          bun={bun}
+          onDrop={onItemAdd}
+        />
+        <IngredientsDropzone
+          items={items}
+          onDrop={onItemAdd}
+          onItemDelete={onDelete}
+          moveItem={moveItem}
+        />
+        <BunDropzone
+          type="bottom"
+          bun={bun}
+          onDrop={onItemAdd}
+        />
+        <Buttons
+          totalPrice={totalPrice}
+          isLoading={isLoading}
+          onSubmit={onSubmit}
+          canOrder={canOrder}
+        />
+        {order && order.id && (
+          <Modal
+            className="pt-30 pr-25 pb-30 pl-25"
+            onRequestClose={onRequestClose}
+          >
+            <OrderDetails
+              orderId={order.id}
+              status="Ваш заказ начали готовить"
+            />
+          </Modal>
+        )}
+      </div>
+    </DndProvider>
   );
 };
 

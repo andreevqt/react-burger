@@ -6,6 +6,8 @@ import React, {
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import burgerIngredientsStyles from './burger-ingredients.module.css';
 import Tabs from '../tabs/tabs';
 import IngredientCard from '../ingredient-card/ingredient-card';
@@ -71,7 +73,7 @@ const BurgerIngredients = () => {
   };
 
   return (
-    <>
+    <DndProvider backend={HTML5Backend}>
       <h2 className="text text_type_main-large mt-10 mb-5">Соберите бургер</h2>
       <Tabs
         current={currentTab}
@@ -118,7 +120,7 @@ const BurgerIngredients = () => {
           </Modal>
         )
       }
-    </>
+    </DndProvider>
   );
 };
 
