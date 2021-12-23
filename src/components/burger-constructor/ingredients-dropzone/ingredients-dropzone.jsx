@@ -7,7 +7,7 @@ import CustomScroll from '../../custom-scroll/custom-scroll';
 import SortableIngredient from './sortable-ingredient/sortable-ingredient';
 import { dataProptypes } from '../../../utils/data';
 
-const IngredientsSocket = ({
+const IngredientsDropzone = ({
   items,
   onDrop,
   onItemDelete,
@@ -48,11 +48,11 @@ const IngredientsSocket = ({
   );
 };
 
-IngredientsSocket.propTypes = {
+IngredientsDropzone.propTypes = {
   items: PropTypes.arrayOf(dataProptypes).isRequired,
   onDrop: PropTypes.func.isRequired,
   onItemDelete: PropTypes.func.isRequired,
   moveItem: PropTypes.func.isRequired,
 };
 
-export default IngredientsSocket;
+export default IngredientsDropzone;
