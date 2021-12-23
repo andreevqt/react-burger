@@ -5,7 +5,6 @@ import React, {
   useCallback,
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { nanoid } from 'nanoid';
 import classNames from 'classnames';
 import burgerIngredientsStyles from './burger-ingredients.module.css';
 import Tabs from '../tabs/tabs';
@@ -14,8 +13,8 @@ import CustomScroll from '../custom-scroll/custom-scroll';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import throttle from '../../utils/throttle';
 import Modal from '../modal/modal';
-import { setCurrentItem } from '../../services/actions/ingredients';
 import IngredientSkeleton from './ingredients-skeleton/ingredients-skeleton';
+import { setModalContent } from '../../services/actions/ingredients-modal';
 
 const BurgerIngredients = () => {
   const tabs = {
@@ -29,12 +28,12 @@ const BurgerIngredients = () => {
   const dispatch = useDispatch();
   const { ingredients, currentIngredient, isLoading } = useSelector((store) => ({
     ingredients: store.ingredients.items,
-    currentIngredient: store.ingredients.currentIngredient,
+    currentIngredient: store.ingredientsModal.content,
     isLoading: store.ingredients.isLoading,
   }));
 
-  const closeModal = () => dispatch(setCurrentItem(null));
-  const openModal = (item) => dispatch(setCurrentItem(item));
+  const closeModal = () => dispatch(setModalContent(null));
+  const openModal = (item) => dispatch(setModalContent(item));
 
   const itemsToRender = useMemo(() => (
     ingredients.reduce((acc, item) => {
@@ -89,7 +88,7 @@ const BurgerIngredients = () => {
               {
                 Object.keys(itemsToRender).map((type) => (
                   <div
-                    key={nanoid()}
+                    key={type}
                     ref={(el) => itemsRefs.current[type] = el}
                   >
                     <h5

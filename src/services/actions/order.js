@@ -3,6 +3,7 @@ import api from '../api';
 export const SUBMIT_ORDER_PENDING = 'SUBMIT_ORDER_PENDING';
 export const SUBMIT_ORDER_FULFILLED = 'SUBMIT_ORDER_FULFILLED';
 export const SUBMIT_ORDER_ERROR = 'SUBMIT_ORDER_ERROR';
+export const CLEAR_ORDER = 'CLEAR_ORDER';
 
 export const setOrder = (order) => ({
   type: SUBMIT_ORDER_FULFILLED,
@@ -16,6 +17,10 @@ export const setError = (err) => ({
 
 export const setLoading = () => ({
   type: SUBMIT_ORDER_PENDING,
+});
+
+export const clearOrder = () => ({
+  type: CLEAR_ORDER,
 });
 
 export const submitOrder = () => async (dispatch, getState) => {

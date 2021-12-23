@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import OrderDetails from '../order-details/order-details';
 import Modal from '../modal/modal';
@@ -7,7 +7,7 @@ import IngredientsDropzone from './ingredients-dropzone/ingredients-dropzone';
 import { decrement, increment } from '../../services/actions/ingredients';
 import Buttons from './buttons/buttons';
 import { addItem, deleteItem, swapItems } from '../../services/actions/burger-constructor';
-import { submitOrder } from '../../services/actions/order';
+import { submitOrder, clearOrder } from '../../services/actions/order';
 
 const BurgerConstructor = () => {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const BurgerConstructor = () => {
       .reduce((acc, item) => acc + item.price, bun ? bun.price * 2 : 0)
   ), [items, bun]);
 
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
   const onItemAdd = (item) => {
     dispatch(addItem(item));
@@ -39,10 +39,8 @@ const BurgerConstructor = () => {
     dispatch(increment(item._id));
   };
 
-  const onSubmit = () => {
-    dispatch(submitOrder());
-    setIsOpen(true);
-  };
+  const onSubmit = () => dispatch(submitOrder());
+  const onRequestClose = () => dispatch(clearOrder());
 
   const onDelete = (item, idx) => {
     if (window.confirm('Действительно хотите удалить?')) {
@@ -78,10 +76,10 @@ const BurgerConstructor = () => {
         onSubmit={onSubmit}
         canOrder={canOrder}
       />
-      {isOpen && !isLoading && (
+      {order && order.id && (
         <Modal
           className="pt-30 pr-25 pb-30 pl-25"
-          onRequestClose={() => setIsOpen(false)}
+          onRequestClose={onRequestClose}
         >
           <OrderDetails
             orderId={order.id}

@@ -19,7 +19,7 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <DndProvider backend={HTML5Backend}>
+    <>
       <AppHeader />
       <Main>
         {error ? (
@@ -29,16 +29,18 @@ const App = () => {
           </p>
         ) : (
           <Row>
-            <Col mod="6">
-              <BurgerIngredients />
-            </Col>
-            <Col mod="6">
-              <BurgerConstructor />
-            </Col>
+            <DndProvider backend={HTML5Backend}>
+              <Col mod="6">
+                <BurgerIngredients />
+              </Col>
+              <Col mod="6">
+                <BurgerConstructor />
+              </Col>
+            </DndProvider>
           </Row>
         )}
       </Main>
-    </DndProvider>
+    </>
   );
 };
 

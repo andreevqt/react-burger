@@ -4,7 +4,6 @@ import {
   GET_ITEMS_ERROR,
   INCREMENT_ITEM,
   DECREMENT_ITEM,
-  SET_CURRENT_ITEM,
 } from '../actions/ingredients';
 
 const initialState = {
@@ -28,7 +27,7 @@ export default (state = initialState, action = {}) => {
       };
     }
     case GET_ITEMS_ERROR: {
-      return { ...state, error: action.payload };
+      return { ...initialState, error: action.payload };
     }
     case INCREMENT_ITEM: {
       const id = action.payload;
@@ -48,13 +47,6 @@ export default (state = initialState, action = {}) => {
           ? { ...item, count: item.count > 1 ? item.count - 1 : undefined }
           : item
         )),
-      };
-    }
-    case SET_CURRENT_ITEM: {
-      const item = action.payload;
-      return {
-        ...state,
-        currentItem: item,
       };
     }
     default:

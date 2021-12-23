@@ -1,17 +1,14 @@
 const fetchBase = (url, options) => (
   fetch(url, options)
     .then((response) => (
-      response
-        .json()
-        .then((result) => {
-          if (!result.success) {
-            throw new Error(`Status: ${result.status}. Message: ${result.message}`);
-          }
-          return result;
-        })
-        .catch((err) => {
-          throw new Error(`Status: ${response.status}. Message: ${err.message}`);
-        })
+      response.ok
+        ? response
+          .json()
+        : response
+          .text()
+          .then((text) => {
+            throw new Error(`Status: ${response.status}. Message: ${text}`);
+          })
     ))
 );
 

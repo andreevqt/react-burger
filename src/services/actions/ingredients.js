@@ -5,7 +5,6 @@ export const GET_ITEMS_FULFILLED = 'GET_ITEMS_FULFILLED';
 export const GET_ITEMS_ERROR = 'GET_ITEMS_ERROR';
 export const INCREMENT_ITEM = 'INCREMENT_ITEM';
 export const DECREMENT_ITEM = 'DECREMENT_ITEM';
-export const SET_CURRENT_ITEM = 'SET_CURRENT_ITEM';
 
 export const setItems = (items) => ({
   type: GET_ITEMS_FULFILLED,
@@ -19,11 +18,6 @@ export const setError = (err) => ({
 
 export const setLoading = () => ({
   type: GET_ITEMS_PENDING,
-});
-
-export const setCurrentItem = (item) => ({
-  type: SET_CURRENT_ITEM,
-  payload: item,
 });
 
 export const getItems = () => async (dispatch, getState) => {
