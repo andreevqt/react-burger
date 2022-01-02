@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { nanoid } from 'nanoid';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import tabStyles from './tabs.module.css';
 
@@ -17,7 +16,7 @@ const Tabs = ({
     <div className={tabStyles['tabs-list']}>
       {Object.keys(tabs).map((key) => (
         <div
-          key={nanoid()}
+          key={key}
           className={tabStyles['tab-item']}
         >
           <Tab
