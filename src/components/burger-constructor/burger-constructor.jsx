@@ -29,8 +29,6 @@ const BurgerConstructor = () => {
       .reduce((acc, item) => acc + item.price, bun ? bun.price * 2 : 0)
   ), [items, bun]);
 
-  // const [isOpen, setIsOpen] = useState(false);
-
   const onItemAdd = (item) => {
     dispatch(addItem(item));
     if (item.type === 'bun' && bun) {

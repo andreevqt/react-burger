@@ -15,11 +15,15 @@
         "namedComponents": "arrow-function"
       }
     ],
+    "react/require-default-props": 0,
+    "react/jsx-props-no-spreading": 0,
+    "comma-dangle": 0,
     "no-underscore-dangle": 0,
     "no-param-reassign": 0,
     "no-plusplus": 0,
     "no-alert": 0,
     "jsx-a11y/click-events-have-key-events": 0,
-    "jsx-a11y/no-static-element-interactions": 0
+    "jsx-a11y/no-static-element-interactions": 0,
+    "jsx-a11y/control-has-associated-label": 0
   }
 }

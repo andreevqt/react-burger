@@ -29,11 +29,16 @@ export const submitOrder = () => async (dispatch, getState) => {
     return;
   }
 
+  const { accessToken } = getState().auth;
+  if (!accessToken) {
+    return;
+  }
+
   dispatch(setLoading());
 
   const ingredients = [...items.map((item) => item._id), bun._id, bun._id];
   try {
-    const result = await api.order.create(ingredients);
+    const result = await api.order.create(ingredients, accessToken);
     dispatch(setOrder({ name: result.name, id: result.order.number }));
   } catch (err) {
     dispatch(setError(err.message));

@@ -1,46 +1,25 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import AppHeader from '../app-header/app-header';
-import Main from '../main/main';
-import BurgerIngredients from '../burger-ingredients/burger-ingredients';
-import BurgerConstructor from '../burger-constructor/burger-constructor';
-import Col from '../layout/col/col';
-import Row from '../layout/row/row';
-import { getItems } from '../../services/actions/ingredients';
+import {
+  Router
+} from 'react-router-dom';
+import useAuth from '../../hooks/use-auth';
+import WithLoader from '../with-loader/with-loader';
+import history from '../../services/history/history';
+import CustomSwitch from '../custom-switch/custom-switch';
 
 const App = () => {
-  const dispatch = useDispatch();
-  const error = useSelector((store) => store.ingredients.error || store.order.error);
+  const { isLoading, getUser } = useAuth();
 
   useEffect(() => {
-    dispatch(getItems());
-  }, [dispatch]);
+    getUser();
+  }, []);
 
   return (
-    <>
-      <AppHeader />
-      <Main>
-        {error ? (
-          <p className="text text_type_main-medium mt-10">
-            Ошибка!
-            {error}
-          </p>
-        ) : (
-          <DndProvider backend={HTML5Backend}>
-            <Row>
-              <Col mod="6">
-                <BurgerIngredients />
-              </Col>
-              <Col mod="6">
-                <BurgerConstructor />
-              </Col>
-            </Row>
-          </DndProvider>
-        )}
-      </Main>
-    </>
+    <WithLoader isLoading={isLoading}>
+      <Router history={history}>
+        <CustomSwitch />
+      </Router>
+    </WithLoader>
   );
 };
 

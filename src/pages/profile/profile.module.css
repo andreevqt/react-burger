@@ -1,0 +1,8 @@
+.description {
+  opacity: 0.4;
+}
+
+.buttons {
+  display: flex;
+  align-self: flex-end;
+}

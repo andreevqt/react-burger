@@ -1,8 +1,10 @@
 .header {
+  position: relative;
   background-color: var(--background);
 }
 
 .container {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-content: space-between;
 }
