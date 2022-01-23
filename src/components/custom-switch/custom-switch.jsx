@@ -6,7 +6,7 @@ import Register from '../../pages/register/register';
 import Login from '../../pages/login/login';
 import ResetPassword from '../../pages/reset-password/reset-password';
 import ForgotPassword from '../../pages/forgot-password/forgot-password';
-import Profile from '../../pages/profile/profile';
+import Profile from '../../pages/profile';
 import NoMatch from '../../pages/no-match/no-match';
 import Logout from '../../pages/logout/logout';
 import Ingredient from '../../pages/ingredient/ingredient';
@@ -19,9 +19,9 @@ const CustomSwitch = () => {
   return (
     <>
       <Switch location={background || location}>
-        <ProtectedRoute path="/" exact>
+        <Route path="/" exact>
           <Home />
-        </ProtectedRoute>
+        </Route>
         <Route path="/ingredients/:id" exact>
           <Ingredient />
         </Route>
@@ -37,7 +37,7 @@ const CustomSwitch = () => {
         <Route path="/forgot-password" exact>
           <ForgotPassword />
         </Route>
-        <ProtectedRoute path="/profile" exact>
+        <ProtectedRoute path="/profile">
           <Profile />
         </ProtectedRoute>
         <ProtectedRoute path="/logout" exact>
