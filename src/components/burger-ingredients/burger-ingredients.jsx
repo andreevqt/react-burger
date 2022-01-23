@@ -4,7 +4,6 @@ import React, {
   useMemo,
   useCallback,
 } from 'react';
-import { useSelector } from 'react-redux';
 import classNames from 'classnames';
 import { useHistory, useLocation } from 'react-router-dom';
 import burgerIngredientsStyles from './burger-ingredients.module.css';
@@ -13,6 +12,7 @@ import IngredientCard from '../ingredient-card/ingredient-card';
 import CustomScroll from '../custom-scroll/custom-scroll';
 import throttle from '../../utils/throttle';
 import IngredientSkeleton from './ingredients-skeleton/ingredients-skeleton';
+import useIngredients from '../../hooks/use-ingredients';
 
 const BurgerIngredients = () => {
   const tabs = {
@@ -23,10 +23,7 @@ const BurgerIngredients = () => {
 
   const itemsRefs = useRef({});
   const [currentTab, setCurrentTab] = useState('bun');
-  const { ingredients, isLoading } = useSelector((store) => ({
-    ingredients: store.ingredients.items,
-    isLoading: store.ingredients.isLoading,
-  }));
+  const { ingredients, isLoading } = useIngredients();
 
   const history = useHistory();
   const location = useLocation();
