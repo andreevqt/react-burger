@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import isEqual from 'lodash.isequal';
 
 const validateRequired = (value) => !!value;
@@ -18,7 +18,7 @@ const useForm = ({ initialValues = {} }) => {
   const [errors, setErrors] = useState({});
   const [isDirty, setIsDirty] = useState(false);
 
-  const validateForm = (validateTouched = true) => {
+  const validateForm = useCallback((validateTouched = true) => {
     const errs = {};
 
     Object.keys(schemas).forEach((key) => {
@@ -44,16 +44,16 @@ const useForm = ({ initialValues = {} }) => {
     });
 
     return errs;
-  };
+  }, [schemas, touched, fields]);
 
   useEffect(() => {
     const validatonResult = validateForm();
     setErrors(validatonResult);
-  }, [fields, touched]);
+  }, [fields, touched, validateForm]);
 
   useEffect(() => {
     setIsDirty(!isEqual(initialValues, fields));
-  }, [fields]);
+  }, [fields, initialValues]);
 
   const register = (name, schema) => {
     if (schema && !schemas[name]) {
