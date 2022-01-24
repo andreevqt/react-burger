@@ -13,6 +13,7 @@ import CustomScroll from '../custom-scroll/custom-scroll';
 import throttle from '../../utils/throttle';
 import IngredientSkeleton from './ingredients-skeleton/ingredients-skeleton';
 import useIngredients from '../../hooks/use-ingredients';
+import useAuth from '../../hooks/use-auth';
 
 const BurgerIngredients = () => {
   const tabs = {
@@ -24,6 +25,7 @@ const BurgerIngredients = () => {
   const itemsRefs = useRef({});
   const [currentTab, setCurrentTab] = useState('bun');
   const { ingredients, isLoading } = useIngredients();
+  const { isLoading: isAuthLoading } = useAuth();
 
   const history = useHistory();
   const location = useLocation();
@@ -79,7 +81,7 @@ const BurgerIngredients = () => {
         tabs={tabs}
       >
         {
-          isLoading ? <IngredientSkeleton /> : (
+          (isLoading || isAuthLoading) ? <IngredientSkeleton /> : (
             <CustomScroll
               onScroll={handleOnScroll}
               className="pr-4"
