@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import PageLoader from '../page-loader/page-loader';
 
 const WithLoader = ({ isLoading, children }) => (
-  isLoading
-    ? <PageLoader />
-    : children
+  <>
+    {children}
+    {isLoading && <PageLoader />}
+  </>
 );
 
 WithLoader.propTypes = {
