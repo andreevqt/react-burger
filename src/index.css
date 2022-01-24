@@ -14,6 +14,14 @@
   box-sizing: border-box;
 }
 
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
 .pl-0 {
   padding-left: 0 !important;
 }
@@ -34,12 +42,16 @@
   padding-left: calc(var(--offset-base-size) * 12) !important;
 }
 
-.flex-1 {
-  flex: 1 !important;
-}
-
 .align-items-center {
   align-items: center !important;
+}
+
+.justify-content-center {
+  justify-content: center !important;
+}
+
+.space-between {
+  justify-content: space-between;
 }
 
 .constructor-element {
@@ -60,3 +72,15 @@
   border-radius: 0;
 }
 
+.input_size_default {
+  width: 480px;
+}
+
+.tac {
+  text-align: center;
+}
+
+.link {
+  color: var(--colors-interface-accent);
+  text-decoration: none;
+}

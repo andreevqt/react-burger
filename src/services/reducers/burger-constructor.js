@@ -1,6 +1,7 @@
 import {
   CONSTRUCTOR_ADD_ITEM,
   CONSTRUCTOR_DELETE_ITEM,
+  CONSTRUCTOR_RESET,
   CONSTRUCTOR_SWAP_ITEMS,
 } from '../actions/burger-constructor';
 
@@ -38,6 +39,9 @@ export default (state = initialState, action = {}) => {
         ...state,
         items: cpy,
       };
+    }
+    case CONSTRUCTOR_RESET: {
+      return initialState;
     }
     default: {
       return state;

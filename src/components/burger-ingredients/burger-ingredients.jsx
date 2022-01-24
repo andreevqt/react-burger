@@ -4,17 +4,16 @@ import React, {
   useMemo,
   useCallback,
 } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
+import { useHistory, useLocation } from 'react-router-dom';
 import burgerIngredientsStyles from './burger-ingredients.module.css';
 import Tabs from '../tabs/tabs';
 import IngredientCard from '../ingredient-card/ingredient-card';
 import CustomScroll from '../custom-scroll/custom-scroll';
-import IngredientDetails from '../ingredient-details/ingredient-details';
 import throttle from '../../utils/throttle';
-import Modal from '../modal/modal';
 import IngredientSkeleton from './ingredients-skeleton/ingredients-skeleton';
-import { setModalContent } from '../../services/actions/ingredients-modal';
+import useIngredients from '../../hooks/use-ingredients';
+import useAuth from '../../hooks/use-auth';
 
 const BurgerIngredients = () => {
   const tabs = {
@@ -25,15 +24,11 @@ const BurgerIngredients = () => {
 
   const itemsRefs = useRef({});
   const [currentTab, setCurrentTab] = useState('bun');
-  const dispatch = useDispatch();
-  const { ingredients, currentIngredient, isLoading } = useSelector((store) => ({
-    ingredients: store.ingredients.items,
-    currentIngredient: store.ingredientsModal.content,
-    isLoading: store.ingredients.isLoading,
-  }));
+  const { ingredients, isLoading } = useIngredients();
+  const { isLoading: isAuthLoading } = useAuth();
 
-  const closeModal = () => dispatch(setModalContent(null));
-  const openModal = (item) => dispatch(setModalContent(item));
+  const history = useHistory();
+  const location = useLocation();
 
   const itemsToRender = useMemo(() => (
     ingredients.reduce((acc, item) => {
@@ -42,12 +37,19 @@ const BurgerIngredients = () => {
     }, { bun: [], sauce: [], main: [] })
   ), [ingredients]);
 
+  const onIngredientClick = (item) => () => {
+    history.replace({
+      pathname: `/ingredients/${item._id}`,
+      state: { background: location }
+    });
+  };
+
   const renderIngredients = (type) => (
     itemsToRender[type].map((item) => (
       <IngredientCard
         key={item._id}
         ingredient={item}
-        onClick={() => openModal(item)}
+        onClick={onIngredientClick(item)}
       />
     ))
   );
@@ -79,7 +81,7 @@ const BurgerIngredients = () => {
         tabs={tabs}
       >
         {
-          isLoading ? <IngredientSkeleton /> : (
+          (isLoading || isAuthLoading) ? <IngredientSkeleton /> : (
             <CustomScroll
               onScroll={handleOnScroll}
               className="pr-4"
@@ -106,18 +108,6 @@ const BurgerIngredients = () => {
           )
         }
       </Tabs>
-      {
-        currentIngredient && (
-          <Modal
-            className="pt-10 pr-10 pb-15 pl-10"
-            onRequestClose={closeModal}
-          >
-            <IngredientDetails
-              ingredient={currentIngredient}
-            />
-          </Modal>
-        )
-      }
     </>
   );
 };

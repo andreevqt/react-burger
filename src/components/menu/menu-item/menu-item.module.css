@@ -5,8 +5,12 @@
   align-items: center;
 }
 
-.menu-item svg {
+.icon {
+  font-size: 0;
   margin-right: calc(var(--offset-base-size) * 2);
+}
+
+.icon svg {
   fill: var(--text-inactive-color);
 }
 
@@ -14,6 +18,10 @@
   color: var(--text-primary-color);
 }
 
-.menu-item.active svg {
+.menu-item.active .icon svg{
   fill: var(--text-primary-color);
+}
+
+.menu-item.vertical {
+  padding-left: 0;
 }

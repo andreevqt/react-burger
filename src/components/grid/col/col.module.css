@@ -18,6 +18,12 @@
   max-width: 25%;
 }
 
+.col-4 {
+  composes: col-base;
+  flex: 0 0 33.33%;
+  max-width: 33.33%;
+}
+
 .col-6 {
   composes: col-base;
   flex: 0 0 50%;
@@ -30,3 +36,16 @@
   width: auto;
   max-width: 100%;
 }
+
+.left {
+  margin-right: auto;
+}
+
+.right {
+  margin-left: auto;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+} 

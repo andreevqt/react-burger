@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import OrderDetails from '../order-details/order-details';
 import Modal from '../modal/modal';
@@ -8,9 +9,14 @@ import { decrement, increment } from '../../services/actions/ingredients';
 import Buttons from './buttons/buttons';
 import { addItem, deleteItem, swapItems } from '../../services/actions/burger-constructor';
 import { submitOrder, clearOrder } from '../../services/actions/order';
+import useAuth from '../../hooks/use-auth';
 
 const BurgerConstructor = () => {
   const dispatch = useDispatch();
+
+  const { user } = useAuth();
+  const history = useHistory();
+  const location = useLocation();
 
   const {
     order,
@@ -29,8 +35,6 @@ const BurgerConstructor = () => {
       .reduce((acc, item) => acc + item.price, bun ? bun.price * 2 : 0)
   ), [items, bun]);
 
-  // const [isOpen, setIsOpen] = useState(false);
-
   const onItemAdd = (item) => {
     dispatch(addItem(item));
     if (item.type === 'bun' && bun) {
@@ -39,7 +43,15 @@ const BurgerConstructor = () => {
     dispatch(increment(item._id));
   };
 
-  const onSubmit = () => dispatch(submitOrder());
+  const onSubmit = () => {
+    if (!user) {
+      history.replace({ pathname: '/login', state: { from: location } });
+      return;
+    }
+
+    dispatch(submitOrder());
+  };
+
   const onRequestClose = () => dispatch(clearOrder());
 
   const onDelete = (item, idx) => {

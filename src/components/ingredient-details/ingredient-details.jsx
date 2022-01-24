@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import ingredientDetailsStyles from './ingredient-details.module.css';
 import { dataProptypes } from '../../utils/data';
@@ -6,6 +7,7 @@ import { dataProptypes } from '../../utils/data';
 
 const IngredientDetails = ({
   ingredient,
+  withinModal
 }) => {
   const {
     name,
@@ -15,9 +17,18 @@ const IngredientDetails = ({
     carbohydrates,
     image_large,
   } = ingredient;
+
+  const titleClasses = classNames(
+    ingredientDetailsStyles['title'],
+    'text text_type_main-large pr-7',
+    {
+      'mr-auto': withinModal
+    }
+  );
+
   return (
     <>
-      <h5 className={classNames(ingredientDetailsStyles['title'], 'text text_type_main-large pr-7')}>
+      <h5 className={titleClasses}>
         Детали ингредиента
       </h5>
       <img src={image_large} alt={name} />
@@ -64,6 +75,11 @@ const IngredientDetails = ({
 
 IngredientDetails.propTypes = {
   ingredient: dataProptypes.isRequired,
+  withinModal: PropTypes.bool
+};
+
+IngredientDetails.defaultProps = {
+  withinModal: false
 };
 
 export default IngredientDetails;

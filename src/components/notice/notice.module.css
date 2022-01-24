@@ -1,0 +1,21 @@
+.notice {
+  position: absolute;
+  z-index: 9999;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--colors-interface-error);
+  padding: calc(var(--offset-base-size) * 4) calc(var(--offset-base-size) * 3);
+  display: flex;
+  justify-content: center;
+}
+
+.close {
+  cursor: pointer;
+  padding: 0;
+  font-size: 0;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  right: calc(var(--offset-base-size) * 3);
+}

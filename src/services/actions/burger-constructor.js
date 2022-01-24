@@ -1,6 +1,7 @@
 export const CONSTRUCTOR_ADD_ITEM = 'CONSTRUCTOR_ADD_ITEM';
 export const CONSTRUCTOR_DELETE_ITEM = 'CONSTRUCTOR_DELETE_ITEM';
 export const CONSTRUCTOR_SWAP_ITEMS = 'CONSTRUCTOR_SWAP_ITEMS';
+export const CONSTRUCTOR_RESET = 'CONSTRUCTOR_RESET';
 
 export const swapItems = (dragIndex, hoverIndex) => ({
   type: CONSTRUCTOR_SWAP_ITEMS,
@@ -15,4 +16,8 @@ export const addItem = (item) => ({
 export const deleteItem = (idx) => ({
   type: CONSTRUCTOR_DELETE_ITEM,
   payload: idx,
+});
+
+export const reset = () => ({
+  type: CONSTRUCTOR_RESET
 });

@@ -1,0 +1,15 @@
+.form,
+.body,
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  margin-bottom: calc(var(--offset-base-size) * 6);
+}
+
+.body {
+  margin-bottom: calc(var(--offset-base-size) * 20);
+}

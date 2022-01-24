@@ -21,12 +21,12 @@ export const setLoading = () => ({
 });
 
 export const getItems = () => async (dispatch, getState) => {
-  dispatch(setLoading());
-
   const { isLoading } = getState().ingredients;
-  if (!isLoading) {
+  if (isLoading) {
     return;
   }
+
+  dispatch(setLoading());
 
   try {
     const items = await api.ingredients.list();
