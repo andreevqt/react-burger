@@ -11,7 +11,11 @@ const isExpired = (token) => {
 
 const jwt = ({ getState, dispatch }) => (next) => (action) => {
   if (typeof action === 'function') {
-    const { accessToken } = getState().auth;
+    const { accessToken, isLoading } = getState().auth;
+    if (isLoading) {
+      next(action);
+      return;
+    }
     if (accessToken) {
       // accessToken is present, checking for expiration 
       if (isExpired(accessToken)) {
