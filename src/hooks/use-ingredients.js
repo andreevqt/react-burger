@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getItems } from '../services/actions/ingredients';
+import { getItems as getItemsAction } from '../services/actions/ingredients';
 
 const useIngredients = () => {
   const dispatch = useDispatch();
@@ -17,16 +16,13 @@ const useIngredients = () => {
     error: store.ingredients.error
   }));
 
-  useEffect(() => {
-    if (!ingredients.length && !isLoading) {
-      dispatch(getItems());
-    }
-  }, []);
+  const getItems = () => dispatch(getItemsAction());
 
   return {
     ingredients,
     isLoading,
     bun,
+    getItems,
     error
   };
 };
