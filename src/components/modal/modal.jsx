@@ -13,14 +13,11 @@ const Modal = ({
   children,
   onRequestClose,
 }) => {
-  const containerRef = useRef(document.createElement('div'));
+  const containerRef = useRef(document.querySelector('#modals'));
 
   useEffect(() => {
-    const container = containerRef.current;
-    document.body.appendChild(container);
     document.body.classList.add(BODY_CLASS);
     return () => {
-      document.body.removeChild(container);
       document.body.classList.remove(BODY_CLASS);
     };
   }, []);
