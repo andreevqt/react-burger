@@ -1,4 +1,5 @@
 import api from '../api';
+import { reset } from './burger-constructor';
 
 export const SUBMIT_ORDER_PENDING = 'SUBMIT_ORDER_PENDING';
 export const SUBMIT_ORDER_FULFILLED = 'SUBMIT_ORDER_FULFILLED';
@@ -40,6 +41,7 @@ export const submitOrder = () => async (dispatch, getState) => {
   try {
     const result = await api.order.create(ingredients, accessToken);
     dispatch(setOrder({ name: result.name, id: result.order.number }));
+    dispatch(reset());
   } catch (err) {
     dispatch(setError(err.message));
   }
