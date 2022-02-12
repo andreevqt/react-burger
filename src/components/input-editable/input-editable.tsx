@@ -5,7 +5,7 @@ const InputEditable: React.FC<{
   type?: 'text' | 'email' | 'password';
   placeholder: string;
   onBlur: (e?: React.FocusEvent<HTMLInputElement>) => void;
-  onChange: (e?: React.SyntheticEvent) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onDelete: () => void;
   value: string;
   error?: boolean;

@@ -10,11 +10,6 @@ import useForm from '../../hooks/use-form';
 import useAuth from '../../hooks/use-auth';
 import { TState } from '../../types/history';
 
-type TLoginFormFields = {
-  email: string;
-  password: string;
-}
-
 const Login = () => {
   const { login, user } = useAuth();
   const location = useLocation<TState>();
@@ -23,14 +18,14 @@ const Login = () => {
     register,
     handleSubmit,
     errors
-  } = useForm<TLoginFormFields>({
+  } = useForm({
     initialValues: {
       email: '',
       password: ''
     }
   });
 
-  const onSubmit = ({ email, password }: TLoginFormFields) => login(email, password);
+  const onSubmit = ({ email, password }: { [name: string]: string }) => login(email, password);
 
   if (user) {
     return (

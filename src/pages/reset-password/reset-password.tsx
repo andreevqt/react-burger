@@ -12,11 +12,6 @@ import useAuth from '../../hooks/use-auth';
 import WithLoader from '../../components/with-loader/with-loader';
 import { Step } from '../../services/actions/forgot-password';
 
-type TResetPasswordFormFields = {
-  token: string;
-  password: string;
-};
-
 const ResetPassword: React.FC = () => {
   const { step, reset, isLoading } = useForgotPassword();
   const { user } = useAuth();
@@ -27,7 +22,7 @@ const ResetPassword: React.FC = () => {
     }
   });
 
-  const onSubmit = ({ password, token }: TResetPasswordFormFields) => reset(password, token);
+  const onSubmit = ({ password, token }: { [name: string]: string }) => reset(password, token);
 
   if (user) {
     return (

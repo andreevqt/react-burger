@@ -7,12 +7,6 @@ import InputPassword from '../../components/input-password/input-password';
 import useForm from '../../hooks/use-form';
 import useAuth from '../../hooks/use-auth';
 
-type TRegisterFormFields = {
-  name: string;
-  password: string;
-  email: string;
-};
-
 const Register: React.FC = () => {
   const auth = useAuth();
 
@@ -20,7 +14,7 @@ const Register: React.FC = () => {
     register,
     handleSubmit,
     errors
-  } = useForm<TRegisterFormFields>({
+  } = useForm({
     initialValues: {
       name: '',
       password: '',
@@ -28,7 +22,7 @@ const Register: React.FC = () => {
     }
   });
 
-  const onSubmit = ({ email, password, name }: TRegisterFormFields) => auth.register(email, password, name);
+  const onSubmit = ({ email, password, name }: { [name: string]: string }) => auth.register(email, password, name);
 
   if (auth.user) {
     return (

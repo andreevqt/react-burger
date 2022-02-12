@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState, useEffect, useCallback } from 'react';
 import isEqual from 'lodash.isequal';
 
@@ -10,36 +9,60 @@ const validateEmail = (email: string) => email
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   );
 
-/* react-hook-form like hook */
+type TValidatorOptions = { msg: string };
 
-const useForm = <T>({ initialValues }: { initialValues: T }) => {
-  const [fields, setFields] = useState<T>({ ...initialValues });
-  const [schemas, setSchemas] = useState({});
-  const [touched, setTouched] = useState({});
-  const [errors, setErrors] = useState<{ [name in keyof T]?: string }>({});
+type TSchema = {
+  required?: TValidatorOptions | boolean;
+  email?: TValidatorOptions | boolean;
+}
+
+type TSchemas<T> = {
+  [name in keyof T]: TSchema;
+};
+
+type TTouched<T> = {
+  [name in keyof T]?: boolean;
+};
+
+type TError<T> = {
+  [name in keyof T]?: string;
+};
+
+type TFields = {
+  [name: string]: string;
+};
+
+const useForm = ({ initialValues }: { initialValues: TFields }) => {
+  const [fields, setFields] = useState<TFields>({ ...initialValues });
+  const [schemas, setSchemas] = useState<TSchemas<TFields>>({});
+  const [touched, setTouched] = useState<TTouched<TFields>>({});
+  const [errors, setErrors] = useState<TError<TFields>>({});
   const [isDirty, setIsDirty] = useState(false);
 
   const validateForm = useCallback((validateTouched = true) => {
-    const errs = {};
+    const errs: TError<TFields> = {};
 
-    Object.keys(schemas).forEach((key) => {
+    (Object.keys(schemas) as Array<keyof TFields>).forEach((key) => {
       const isTouched = touched[key];
       if (validateTouched && !isTouched) {
         return;
       }
       const value = fields[key];
       const schema = schemas[key];
+      if (!schema) {
+        return;
+      }
       if (typeof schema.required !== 'undefined') {
         const result = validateRequired(value);
         if (!result) {
-          errs[key] = schema.required.msg || 'Требумое поле';
+          errs[key] = typeof schema.required === 'boolean' ? 'Требумое поле' : schema.required.msg;
           return;
         }
       }
       if (typeof schema.email !== 'undefined') {
         const result = validateEmail(value);
         if (!result) {
-          errs[key] = schema.email.msg || 'Введите корректный e-mail';
+          errs[key] = typeof schema.email === 'boolean' ? 'Введите корректный e-mail' : schema.email.msg;
         }
       }
     });
@@ -56,12 +79,12 @@ const useForm = <T>({ initialValues }: { initialValues: T }) => {
     setIsDirty(!isEqual(initialValues, fields));
   }, [fields, initialValues]);
 
-  const register = (name: string, schema?: any) => {
+  const register = (name: keyof TFields, schema?: TSchema) => {
     if (schema && !schemas[name]) {
       setSchemas({ ...schemas, [name]: schema });
     }
 
-    const onChange = (e) => {
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setFields({ ...fields, [name]: e.target.value });
     };
 
@@ -78,7 +101,7 @@ const useForm = <T>({ initialValues }: { initialValues: T }) => {
     };
   };
 
-  const handleSubmit = (onSubmit: (values: T) => void) => (e: React.FormEvent) => {
+  const handleSubmit = (onSubmit: (values: TFields) => void) => (e: React.FormEvent) => {
     e.preventDefault();
     setTouched(Object.keys(fields).reduce((acc, key) => ({ ...acc, [key]: true }), {}));
 

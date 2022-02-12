@@ -29,11 +29,11 @@ const Profile = () => {
     setFields,
     fields,
     isDirty
-  } = useForm<TProfileFormFields>({
+  } = useForm({
     initialValues
   });
 
-  const onSubmit = (data: TProfileFormFields) => update(data);
+  const onSubmit = (data: { [name: string]: string }) => update(data);
 
   const clear = () => setFields(initialValues);
 

@@ -9,12 +9,8 @@ import useForgotPassword from '../../hooks/use-forgot-password';
 import WithLoader from '../../components/with-loader/with-loader';
 import { Step } from '../../services/actions/forgot-password';
 
-type ForgotPasswordFields = {
-  email: string;
-};
-
 const ForgotPassword: React.FC = () => {
-  const { register, errors, handleSubmit } = useForm<ForgotPasswordFields>({
+  const { register, errors, handleSubmit } = useForm({
     initialValues: {
       email: '',
     }
@@ -23,7 +19,7 @@ const ForgotPassword: React.FC = () => {
   const { getCode, step, isLoading } = useForgotPassword();
   const { user } = useAuth();
 
-  const onSubmit = ({ email }: ForgotPasswordFields) => getCode(email);
+  const onSubmit = ({ email }: { [name: string]: string }) => getCode(email);
 
   if (user) {
     return (

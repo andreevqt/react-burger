@@ -6,7 +6,7 @@ const InputPassword = forwardRef<HTMLInputElement, {
   value: string;
   error?: boolean;
   errorText?: string;
-  onChange: (e?: React.SyntheticEvent) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }>
   (({ placeholder, error = false, errorText, value, onChange, ...rest }, ref) => {
     const [isHidden, setIsHidden] = useState(true);
