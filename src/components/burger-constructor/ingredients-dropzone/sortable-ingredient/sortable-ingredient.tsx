@@ -5,106 +5,108 @@ import classNames from 'classnames';
 import sortableIngredientStyles from './sortable-ingredient.module.css';
 import { TIngredient } from '../../../../types/ingredients';
 
-const SortableIngredient: React.FC<{
+type TSortableIngredientProps = {
   className?: string;
   ingredient: TIngredient;
   index: number;
-  onDelete: () => void,
-  moveItem: (dragIndex: number, hoverIndex: number) => void,
-}> = ({
+  onDelete: () => void;
+  moveItem: (dragIndex: number, hoverIndex: number) => void;
+};
+
+const SortableIngredient: React.FC<TSortableIngredientProps> = ({
   className,
   ingredient,
   index,
   onDelete,
-  moveItem,
+  moveItem
 }) => {
-    const ref = useRef<HTMLDivElement>(null);
-    const { name, price, image } = ingredient;
-    
-    const [, drag, preview] = useDrag({
-      type: 'sortable-ingredient',
-      item: { index, id: ingredient.id },
-    });
+  const ref = useRef<HTMLDivElement>(null);
+  const { name, price, image } = ingredient;
 
-    const [{ handlerId }, drop] = useDrop({
-      accept: 'sortable-ingredient',
-      collect: (monitor) => ({
-        handlerId: monitor.getHandlerId(),
-      }),
-      hover: (item: { id: string | undefined; index: number }, monitor) => {
-        if (!ref.current) {
-          return;
-        }
-        const dragIndex = item.index;
-        const hoverIndex = index;
+  const [, drag, preview] = useDrag({
+    type: 'sortable-ingredient',
+    item: { index, id: ingredient.id },
+  });
 
-        // Don't replace items with themselves
-        if (dragIndex === hoverIndex) {
-          return;
-        }
+  const [{ handlerId }, drop] = useDrop({
+    accept: 'sortable-ingredient',
+    collect: (monitor) => ({
+      handlerId: monitor.getHandlerId(),
+    }),
+    hover: (item: { id: string | undefined; index: number }, monitor) => {
+      if (!ref.current) {
+        return;
+      }
+      const dragIndex = item.index;
+      const hoverIndex = index;
 
-        // Determine rectangle on screen
-        const hoverBoundingRect = ref.current?.getBoundingClientRect();
+      // Don't replace items with themselves
+      if (dragIndex === hoverIndex) {
+        return;
+      }
 
-        // Get vertical middle
-        const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+      // Determine rectangle on screen
+      const hoverBoundingRect = ref.current?.getBoundingClientRect();
 
-        // Determine mouse position
-        const clientOffset = monitor.getClientOffset();
-        if (!clientOffset) {
-          return;
-        }
+      // Get vertical middle
+      const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
 
-        // Get pixels to the top
-        const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+      // Determine mouse position
+      const clientOffset = monitor.getClientOffset();
+      if (!clientOffset) {
+        return;
+      }
 
-        // Only perform the move when the mouse has crossed half of the items height
-        // When dragging downwards, only move when the cursor is below 50%
-        // When dragging upwards, only move when the cursor is above 50%
+      // Get pixels to the top
+      const hoverClientY = clientOffset.y - hoverBoundingRect.top;
 
-        // Dragging downwards
-        if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-          return;
-        }
+      // Only perform the move when the mouse has crossed half of the items height
+      // When dragging downwards, only move when the cursor is below 50%
+      // When dragging upwards, only move when the cursor is above 50%
 
-        // Dragging upwards
-        if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-          return;
-        }
+      // Dragging downwards
+      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+        return;
+      }
 
-        // Time to actually perform the action
-        moveItem(dragIndex, hoverIndex);
+      // Dragging upwards
+      if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+        return;
+      }
 
-        // Note: we're mutating the monitor item here!
-        // Generally it's better to avoid mutations,
-        // but it's good here for the sake of performance
-        // to avoid expensive index searches.
-        item.index = hoverIndex; // eslint-disable-line
-      },
-    });
+      // Time to actually perform the action
+      moveItem(dragIndex, hoverIndex);
 
-    drop(preview(ref));
+      // Note: we're mutating the monitor item here!
+      // Generally it's better to avoid mutations,
+      // but it's good here for the sake of performance
+      // to avoid expensive index searches.
+      item.index = hoverIndex; // eslint-disable-line
+    },
+  });
 
-    return (
+  drop(preview(ref));
+
+  return (
+    <div
+      className={classNames(sortableIngredientStyles['item'], className)}
+      ref={ref}
+    >
       <div
-        className={classNames(sortableIngredientStyles['item'], className)}
-        ref={ref}
+        className={sortableIngredientStyles['handle']}
+        ref={drag}
+        data-handler-id={handlerId}
       >
-        <div
-          className={sortableIngredientStyles['handle']}
-          ref={drag}
-          data-handler-id={handlerId}
-        >
-          <DragIcon type="primary" />
-        </div>
-        <ConstructorElement
-          text={name}
-          price={price}
-          thumbnail={image}
-          handleClose={onDelete}
-        />
+        <DragIcon type="primary" />
       </div>
-    );
-  };
+      <ConstructorElement
+        text={name}
+        price={price}
+        thumbnail={image}
+        handleClose={onDelete}
+      />
+    </div>
+  );
+};
 
 export default SortableIngredient;

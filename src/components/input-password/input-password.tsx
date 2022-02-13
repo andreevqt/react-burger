@@ -1,13 +1,15 @@
 import React, { useState, forwardRef } from 'react';
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 
-const InputPassword = forwardRef<HTMLInputElement, {
+type TInputPasswordProps = {
   placeholder: string;
   value: string;
   error?: boolean;
   errorText?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}>
+};
+
+const InputPassword = forwardRef<HTMLInputElement, TInputPasswordProps>
   (({ placeholder, error = false, errorText, value, onChange, ...rest }, ref) => {
     const [isHidden, setIsHidden] = useState(true);
     return (

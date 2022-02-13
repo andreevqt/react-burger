@@ -4,12 +4,14 @@ import { Link, useRouteMatch } from 'react-router-dom';
 import menuItemStyles from './menu-item.module.css';
 import { useMenu } from '../use-menu';
 
-const MenuItem: React.FC<{
+type TMenuItemProps = {
   className?: string;
   to: string;
   startIcon?: React.ReactNode;
   label: string;
-}> = ({
+};
+
+const MenuItem: React.FC<TMenuItemProps> = ({
   className,
   to,
   startIcon,

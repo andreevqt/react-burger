@@ -3,10 +3,12 @@ import classNames from 'classnames';
 import ingredientDetailsStyles from './ingredient-details.module.css';
 import { TIngredient } from '../../types/ingredients';
 
-const IngredientDetails:React.FC<{
+type TIngredientDetailsProps = {
   ingredient: TIngredient;
   withinModal?: boolean;
-}> = ({
+};
+
+const IngredientDetails: React.FC<TIngredientDetailsProps> = ({
   ingredient,
   withinModal = false,
 }) => {

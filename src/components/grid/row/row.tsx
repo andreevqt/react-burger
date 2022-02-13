@@ -2,10 +2,12 @@ import React from 'react';
 import classNames from 'classnames';
 import rowStyles from './row.module.css';
 
-// TODO: implement grid system
-const Row: React.FC<{
+type TRowProps = {
   className?: string;
-}> = ({
+};
+
+// TODO: implement grid system
+const Row: React.FC<TRowProps> = ({
   className,
   children
 }) => (

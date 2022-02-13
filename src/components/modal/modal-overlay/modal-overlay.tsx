@@ -1,15 +1,17 @@
 import React from 'react';
 import modalOverlayStyles from './modal-overlay.module.css';
 
-const ModalOverlay: React.FC<{
+type TModalOverlayProps = {
   onRequestClose: (e?: React.SyntheticEvent) => void;
-}> = ({
-  onRequestClose,
+};
+
+const ModalOverlay: React.FC<TModalOverlayProps> = ({
+  onRequestClose
 }) => (
-    <div
-      className={modalOverlayStyles['overlay']}
-      onClick={onRequestClose}
-    />
-  );
+  <div
+    className={modalOverlayStyles['overlay']}
+    onClick={onRequestClose}
+  />
+);
 
 export default ModalOverlay;

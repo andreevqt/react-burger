@@ -1,9 +1,11 @@
 import React from 'react';
 import PageLoader from '../page-loader/page-loader';
 
-const WithLoader: React.FC<{
+type TWithLoaderProps = {
   isLoading?: boolean;
-}> = ({ isLoading = false, children }) => (
+};
+
+const WithLoader: React.FC<TWithLoaderProps> = ({ isLoading = false, children }) => (
   <>
     {children}
     {isLoading && <PageLoader />}

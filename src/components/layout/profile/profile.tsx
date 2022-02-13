@@ -7,10 +7,12 @@ import Row from '../../grid/row/row';
 import Col from '../../grid/col/col';
 import profileStyles from './profile.module.css';
 
-const Profile: React.FC<{
+type TProfileProps = {
   description: string;
-  content: React.ReactNode
-}> = ({ description, content }) => {
+  content: React.ReactNode;
+};
+
+const Profile: React.FC<TProfileProps> = ({ description, content }) => {
   const descriptionClasses = classNames('mt-20 text text_type_main-default text_color_inactive', profileStyles['description']);
   return (
     <Base>
