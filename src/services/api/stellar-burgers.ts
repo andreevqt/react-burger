@@ -49,13 +49,19 @@ const patch = (url: string, data?: any, headers?: THttpHeaders) => fetchBase(url
   data,
 });
 
+export type TUpdateProps = {
+  name?: string;
+  password?: string;
+  email?: string;
+};
+
 const api = (baseUrl: string) => ({
   ingredients: {
     list: () => get(`${baseUrl}/ingredients`)
       .then((result) => result.data),
   },
   order: {
-    create: (ingredients: Array<Number>, token: string) => post(`${baseUrl}/orders`, { ingredients }, { Authorization: token })
+    create: (ingredients: Array<number>, token: string) => post(`${baseUrl}/orders`, { ingredients }, { Authorization: token })
       .then(({ name, order }) => ({ name, order })),
   },
   auth: {
@@ -63,7 +69,7 @@ const api = (baseUrl: string) => ({
     login: (email: string, password: string) => post(`${baseUrl}/auth/login`, { email, password }),
     logout: (token: string) => post(`${baseUrl}/auth/logout`, { token }),
     get: (token: string) => get(`${baseUrl}/auth/user`, { Authorization: token }),
-    update: (token: string, data: any) => patch(`${baseUrl}/auth/user`, data, { Authorization: token }),
+    update: (token: string, data: TUpdateProps) => patch(`${baseUrl}/auth/user`, data, { Authorization: token }),
     refresh: (token: string) => post(`${baseUrl}/auth/token`, { token }),
   },
   password: {

@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { TUpdateProps } from '../services/api/stellar-burgers';
 import {
   login as loginAction,
   register as registerAction,
@@ -20,8 +21,9 @@ const useAuth = () => {
   const login = (email: string, password: string) => dispatch(loginAction(email, password));
   const register = (email: string, password: string, name: string) => dispatch(registerAction(email, password, name));
   const getUser = () => dispatch(getUserAction());
+  // TODO: fixme
   const logout = (cb: () => void) => dispatch(logoutAction(cb));
-  const update = (data: any) => dispatch(updateAction(data));
+  const update = (data: TUpdateProps ) => dispatch(updateAction(data));
 
   return {
     login,
