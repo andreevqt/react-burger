@@ -4,14 +4,8 @@ import RegisterForm from '../../components/register-form/register-from';
 import InputEditable from '../../components/input-editable/input-editable';
 import profileStyles from './profile.module.css';
 import useAuth from '../../hooks/use-auth';
-import useForm from '../../hooks/use-form';
+import useForm, { TFields } from '../../hooks/use-form';
 import ProfileLayout from '../../components/layout/profile/profile';
-
-type TProfileFormFields = {
-  name: string;
-  email: string;
-  password: string;
-};
 
 const Profile = () => {
   const { user, update } = useAuth();
@@ -33,7 +27,7 @@ const Profile = () => {
     initialValues
   });
 
-  const onSubmit = (data: { [name: string]: string }) => update(data);
+  const onSubmit = (data: TFields) => update(data);
 
   const clear = () => setFields(initialValues);
 

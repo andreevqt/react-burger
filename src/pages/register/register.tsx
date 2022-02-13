@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import RegisterForm from '../../components/register-form/register-from';
 import Base from '../../components/layout/base/base';
 import InputPassword from '../../components/input-password/input-password';
-import useForm from '../../hooks/use-form';
+import useForm, { TFields } from '../../hooks/use-form';
 import useAuth from '../../hooks/use-auth';
 
 const Register: React.FC = () => {
@@ -22,7 +22,7 @@ const Register: React.FC = () => {
     }
   });
 
-  const onSubmit = ({ email, password, name }: { [name: string]: string }) => auth.register(email, password, name);
+  const onSubmit = ({ email, password, name }: TFields) => auth.register(email, password, name);
 
   if (auth.user) {
     return (

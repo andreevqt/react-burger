@@ -7,7 +7,7 @@ import Row from '../../components/grid/row/row';
 import Col from '../../components/grid/col/col';
 import InputPassword from '../../components/input-password/input-password';
 import useForgotPassword from '../../hooks/use-forgot-password';
-import useForm from '../../hooks/use-form';
+import useForm, { TFields } from '../../hooks/use-form';
 import useAuth from '../../hooks/use-auth';
 import WithLoader from '../../components/with-loader/with-loader';
 import { Step } from '../../services/actions/forgot-password';
@@ -22,7 +22,7 @@ const ResetPassword: React.FC = () => {
     }
   });
 
-  const onSubmit = ({ password, token }: { [name: string]: string }) => reset(password, token);
+  const onSubmit = ({ password, token }: TFields) => reset(password, token);
 
   if (user) {
     return (

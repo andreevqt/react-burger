@@ -3,7 +3,7 @@ import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-component
 import { Link, Redirect } from 'react-router-dom';
 import RegisterForm from '../../components/register-form/register-from';
 import Base from '../../components/layout/base/base';
-import useForm from '../../hooks/use-form';
+import useForm, { TFields } from '../../hooks/use-form';
 import useAuth from '../../hooks/use-auth';
 import useForgotPassword from '../../hooks/use-forgot-password';
 import WithLoader from '../../components/with-loader/with-loader';
@@ -19,7 +19,7 @@ const ForgotPassword: React.FC = () => {
   const { getCode, step, isLoading } = useForgotPassword();
   const { user } = useAuth();
 
-  const onSubmit = ({ email }: { [name: string]: string }) => getCode(email);
+  const onSubmit = ({ email }: TFields) => getCode(email);
 
   if (user) {
     return (

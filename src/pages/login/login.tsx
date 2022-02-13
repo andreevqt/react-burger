@@ -6,7 +6,7 @@ import Row from '../../components/grid/row/row';
 import Col from '../../components/grid/col/col';
 import RegisterForm from '../../components/register-form/register-from';
 import InputPassword from '../../components/input-password/input-password';
-import useForm from '../../hooks/use-form';
+import useForm, { TFields } from '../../hooks/use-form';
 import useAuth from '../../hooks/use-auth';
 import { TState } from '../../types/history';
 
@@ -25,7 +25,7 @@ const Login = () => {
     }
   });
 
-  const onSubmit = ({ email, password }: { [name: string]: string }) => login(email, password);
+  const onSubmit = ({ email, password }: TFields) => login(email, password);
 
   if (user) {
     return (

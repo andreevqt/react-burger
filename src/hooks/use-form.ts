@@ -9,26 +9,26 @@ const validateEmail = (email: string) => email
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   );
 
-type TValidatorOptions = { msg: string };
+export type TValidatorOptions = { msg: string };
 
-type TSchema = {
+export type TSchema = {
   required?: TValidatorOptions | boolean;
   email?: TValidatorOptions | boolean;
 }
 
-type TSchemas<T> = {
+export type TSchemas<T> = {
   [name in keyof T]: TSchema;
 };
 
-type TTouched<T> = {
+export type TTouched<T> = {
   [name in keyof T]?: boolean;
 };
 
-type TError<T> = {
+export type TError<T> = {
   [name in keyof T]?: string;
 };
 
-type TFields = {
+export type TFields = {
   [name: string]: string;
 };
 
@@ -55,7 +55,7 @@ const useForm = ({ initialValues }: { initialValues: TFields }) => {
       if (typeof schema.required !== 'undefined') {
         const result = validateRequired(value);
         if (!result) {
-          errs[key] = typeof schema.required === 'boolean' ? 'Требумое поле' : schema.required.msg;
+          errs[key] = typeof schema.required === 'boolean' ? 'Требуемое поле' : schema.required.msg;
           return;
         }
       }
