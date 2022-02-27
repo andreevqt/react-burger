@@ -3,7 +3,7 @@ import { useDrag, useDrop } from 'react-dnd';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import classNames from 'classnames';
 import sortableIngredientStyles from './sortable-ingredient.module.css';
-import { TIngredient } from '../../../../types/ingredients';
+import { TIngredient } from '../../../../services/api';
 
 type TSortableIngredientProps = {
   className?: string;

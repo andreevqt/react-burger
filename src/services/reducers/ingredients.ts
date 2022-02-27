@@ -1,19 +1,29 @@
+import { TIngredient } from '../api';
+
 import {
   GET_ITEMS_PENDING,
   GET_ITEMS_FULFILLED,
   GET_ITEMS_ERROR,
   INCREMENT_ITEM,
   DECREMENT_ITEM,
+  TIngredientActions
 } from '../actions/ingredients';
 
-const initialState = {
+type TIngredientsState = {
+  isLoading: boolean;
+  error: string | object | undefined;
+  bun: TIngredient | undefined;
+  items: TIngredient[];
+}
+
+const initialState: TIngredientsState = {
   isLoading: false,
-  error: null,
-  bun: null,
+  error: undefined,
+  bun: undefined,
   items: [],
 };
 
-export default (state = initialState, action = {}) => {
+export default (state = initialState, action: TIngredientActions) => {
   switch (action.type) {
     case GET_ITEMS_PENDING: {
       return { ...state, isLoading: true };

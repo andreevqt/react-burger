@@ -24,10 +24,10 @@ const useError = () => {
   const dispatch = useDispatch();
 
   const clearError = () => {
-    dispatch(setIngredientsError(null));
-    dispatch(setOrderError(null));
-    dispatch(setAuthError(null));
-    dispatch(setPasswordError(null));
+    dispatch(setIngredientsError(undefined));
+    dispatch(setOrderError(undefined));
+    dispatch(setAuthError(undefined));
+    dispatch(setPasswordError(undefined));
   };
 
   return {

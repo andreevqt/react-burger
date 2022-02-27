@@ -3,14 +3,22 @@ import {
   CONSTRUCTOR_DELETE_ITEM,
   CONSTRUCTOR_RESET,
   CONSTRUCTOR_SWAP_ITEMS,
+  TConstructorActions
 } from '../actions/burger-constructor';
 
-const initialState = {
-  bun: null,
-  items: [],
+import { TIngredient } from '../api';
+
+type TBurgerConstructorState = {
+  bun: TIngredient | undefined;
+  items: TIngredient[];
 };
 
-export default (state = initialState, action = {}) => {
+const initialState: TBurgerConstructorState = {
+  bun: undefined,
+  items: []
+};
+
+export default (state = initialState, action: TConstructorActions) => {
   switch (action.type) {
     case CONSTRUCTOR_ADD_ITEM: {
       const item = action.payload;

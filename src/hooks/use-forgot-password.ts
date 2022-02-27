@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getCode as getCodeAction, reset as resetAction } from '../services/actions/forgot-password';
 
 const useForgotPassword = () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import ingredientDetailsStyles from './ingredient-details.module.css';
-import { TIngredient } from '../../types/ingredients';
+import { TIngredient } from '../../services/api';
 
 type TIngredientDetailsProps = {
   ingredient: TIngredient;

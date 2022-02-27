@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid';
 import { useDrag } from 'react-dnd';
 import classNames from 'classnames';
 import ingredientCardStyles from './ingredient-card.module.css';
-import { TIngredient } from '../../types/ingredients';
+import { TIngredient } from '../../services/api';
 
 type TIngredientCardProps = {
   ingredient: TIngredient;
