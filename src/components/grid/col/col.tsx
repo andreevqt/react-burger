@@ -15,9 +15,9 @@ const Col: React.FC<TColProps> = ({
   align
 }) => {
   const classes = classNames(
-    className,
     layoutStyles[`col${mod ? `-${mod}` : ''}`],
-    { ...(align && { [layoutStyles[align]]: align }) }
+    { ...(align && { [layoutStyles[align]]: align }) },
+    className
   );
 
   return (

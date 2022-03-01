@@ -7,12 +7,12 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "@types/jest": "^26.0.24",
+    "@types/lodash.isequal": "4.5.5",
     "@types/node": "^12.20.37",
     "@types/react": "^17.0.37",
+    "@types/react-dnd": "3.0.2",
     "@types/react-dom": "^17.0.11",
     "@types/react-router-dom": "5.3.3",
-    "@types/react-dnd": "3.0.2",
-    "@types/lodash.isequal": "4.5.5",
     "@ya.praktikum/react-developer-burger-ui-components": "1.13.1",
     "classnames": "2.3.1",
     "history": "4.9.0",
@@ -47,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "moment": "2.29.1"
   }
 }

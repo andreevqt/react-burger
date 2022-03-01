@@ -2,9 +2,10 @@ import React, { SyntheticEvent } from 'react';
 import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import classNames from 'classnames';
 import buttonsStyles from './buttons.module.css';
+import TotalPrice from '../../total-price/total-price';
 
 type TButtonsProps = {
-  totalPrice: number;
+  totalPrice: string;
   onSubmit: (() => void) | ((e: SyntheticEvent) => void);
   canOrder: boolean;
   isLoading: boolean;
@@ -17,10 +18,7 @@ const Buttons: React.FC<TButtonsProps> = ({
   isLoading,
 }) => (
   <div className={classNames(buttonsStyles['buttons'], 'mt-10 pr-4')}>
-    <div className={classNames(buttonsStyles['price'], 'mr-10')}>
-      <span className="text text_type_digits-medium mr-2">{totalPrice}</span>
-      <CurrencyIcon type="primary" />
-    </div>
+    <TotalPrice amount={totalPrice} className="mr-10" type="medium" />
     {canOrder && (
       <Button
         type="primary"

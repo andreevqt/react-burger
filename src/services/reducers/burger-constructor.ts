@@ -18,7 +18,7 @@ const initialState: TBurgerConstructorState = {
   items: []
 };
 
-export default (state = initialState, action: TConstructorActions) => {
+export default (state = initialState, action: TConstructorActions): TBurgerConstructorState => {
   switch (action.type) {
     case CONSTRUCTOR_ADD_ITEM: {
       const item = action.payload;

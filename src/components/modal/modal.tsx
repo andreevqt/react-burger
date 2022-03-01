@@ -8,7 +8,7 @@ import ModalOverlay from './modal-overlay/modal-overlay';
 const BODY_CLASS = 'modal-is-shown';
 
 type TModalProps = {
-  className: string;
+  className?: string;
   onRequestClose: (e?: React.SyntheticEvent) => void;
 };
 

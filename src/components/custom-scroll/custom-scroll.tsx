@@ -66,7 +66,7 @@ const CustomScroll: React.FC<TCustomScrollProps> = ({
 
   return (
     <div
-      className={classNames(scrollStyles.scroll, 'custom-scroll', className)}
+      className={classNames(scrollStyles.scroll, 'custom-scroll pr-2', className)}
       ref={container}
     >
       {children}

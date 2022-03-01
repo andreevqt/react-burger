@@ -9,13 +9,17 @@ import ForgotPassword from '../../pages/forgot-password/forgot-password';
 import Profile from '../../pages/profile';
 import NoMatch from '../../pages/no-match/no-match';
 import Logout from '../../pages/logout/logout';
+import Feed from '../../pages/feed/feed';
+import Order from '../../pages/order/order';
 import Ingredient from '../../pages/ingredient/ingredient';
+import OrderInfoModal from '../../components/order-info/modal/modal';
 import IngredientModal from '../ingredient-modal/ingredient-modal';
 import { TState } from '../../types/history';
 
 const CustomSwitch: React.FC = () => {
   const location = useLocation<TState>();
   const background = location.state && location.state.background;
+  console.log('here');
 
   return (
     <>
@@ -44,6 +48,12 @@ const CustomSwitch: React.FC = () => {
         <ProtectedRoute path="/logout" exact>
           <Logout />
         </ProtectedRoute>
+        <Route path="/feed" exact>
+          <Feed />
+        </Route>
+        <Route path="/feed/:id" exact>
+          <Order />
+        </Route>
         <Route path="*">
           <NoMatch />
         </Route>
@@ -53,6 +63,20 @@ const CustomSwitch: React.FC = () => {
           <Route path="/ingredients/:id" exact>
             <IngredientModal />
           </Route>
+        )
+      }
+      {
+        background && (
+          <Route path="/feed/:id" exact>
+            <OrderInfoModal redirectTo="/feed" />
+          </Route>
+        )
+      }
+      {
+        background && (
+          <ProtectedRoute path="/profile/orders/:id" exact>
+            <OrderInfoModal redirectTo="/profile/orders" />
+          </ProtectedRoute>
         )
       }
     </>

@@ -15,7 +15,7 @@ const initialState: TAuthState = {
   error: undefined
 };
 
-export default (state: TAuthState = initialState, action: TAuthActions) => {
+export default (state: TAuthState = initialState, action: TAuthActions): TAuthState => {
   switch (action.type) {
     case AUTH_ERROR: {
       const error = action.payload;
@@ -39,9 +39,9 @@ export default (state: TAuthState = initialState, action: TAuthActions) => {
       const { user, accessToken } = action.payload;
       return {
         ...state,
-        isLoading: false,
         user,
-        accessToken
+        isLoading: false,
+        ...(accessToken && {accessToken})
       };
     }
     default: {

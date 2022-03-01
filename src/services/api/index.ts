@@ -1,7 +1,5 @@
 import requests, { HttpError } from './requests';
 
-
-
 export type TResponse = {
   success: boolean;
 };
@@ -28,7 +26,7 @@ export type TIngredient = {
   image_mobile: string;
   image_large: string;
   __v: number;
-  count: number;
+  count?: number;
 };
 
 export type TTokens = {
@@ -56,13 +54,36 @@ export type TIngredientsResponse = TResponse & {
   data: TIngredient[];
 };
 
-export type TOrder = {
-  number: number;
+export type TOrderResponse = TResponse & {
+  order: {
+    number: number;
+  };
+  name: string;
 };
 
-export type TOrderResponse = TResponse & {
-  order: TOrder;
-  name: string;
+export type TOrderStatus =
+  | 'created'
+  | 'pending'
+  | 'done';
+
+export type TOrder = {
+  _id: string,
+  ingredients: string[],
+  status: TOrderStatus,
+  name: string,
+  number: number,
+  createdAt: string,
+  updatedAt: string
+};
+
+export type TGetOrderResponse = TResponse & {
+  orders: TOrder[];
+};
+
+export type TOrdersMessage = TResponse & {
+  orders: TOrder[];
+  total: number;
+  totalToday: number;
 };
 
 export type TError = string | object;
@@ -81,6 +102,7 @@ const api = {
   order: {
     create: (ingredients: string[]) => requests.private.post(`/orders`, { ingredients })
       .then(({ name, order }) => ({ name, order })),
+    get: (number: number) => requests.public.get<TGetOrderResponse>(`/orders/${number}`).then(({ orders }) => orders.length > 0 ? orders[0] : undefined)
   },
   auth: {
     register: (email: string, password: string, name: string) => requests.public.post<TRegisterResponse>(`/auth/register`, { email, password, name }),

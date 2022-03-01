@@ -17,7 +17,7 @@ const Profile: React.FC<TProfileProps> = ({ description, content }) => {
   return (
     <Base>
       <Row>
-        <Col>
+        <Col mod="4">
           <Menu direction="column" size="big" className="mt-30">
             <MenuItem to="/profile" label="Профиль" />
             <MenuItem to="/profile/orders" label="История заказа" />
@@ -30,7 +30,6 @@ const Profile: React.FC<TProfileProps> = ({ description, content }) => {
         <Col>
           {content}
         </Col>
-        <Col />
       </Row>
     </Base>
   );

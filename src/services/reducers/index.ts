@@ -4,11 +4,17 @@ import burgerConstructor from './burger-constructor';
 import order from './order';
 import auth from './auth';
 import forgotPassword from './forgot-password';
+import feed from './feed';
+import orderInfo from './order-info';
+import history from './history';
 
 export default combineReducers({
   ingredients,
   burgerConstructor,
   order,
   auth,
+  feed,
+  orderInfo,
+  history,
   forgotPassword
 });

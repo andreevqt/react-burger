@@ -18,7 +18,7 @@ const initialState: TForgotPasswordState = {
   step: Step.CODE
 };
 
-export default (state = initialState, action: TForgotPasswordActions) => {
+export default (state = initialState, action: TForgotPasswordActions): TForgotPasswordState => {
   switch (action.type) {
     case FORGOT_PASSWORD_PENDING: {
       return { ...state, isLoading: true };

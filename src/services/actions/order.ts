@@ -1,6 +1,7 @@
 import api, { TError } from '../api';
 import { AppThunk } from '../store';
 import { reset } from './burger-constructor';
+import { clearCount } from './ingredients';
 
 export const SUBMIT_ORDER_PENDING: 'SUBMIT_ORDER_PENDING' = 'SUBMIT_ORDER_PENDING';
 export const SUBMIT_ORDER_FULFILLED: 'SUBMIT_ORDER_FULFILLED' = 'SUBMIT_ORDER_FULFILLED';
@@ -72,6 +73,7 @@ export const submitOrder: AppThunk = () => async (dispatch, getState) => {
     const result = await api.order.create(ingredients);
     dispatch(setOrder({ name: result.name, id: result.order.number }));
     dispatch(reset());
+    dispatch(clearCount());
   } catch (err: any) {
     dispatch(setError(err.message));
   }

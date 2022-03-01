@@ -6,6 +6,7 @@ export const GET_ITEMS_FULFILLED: 'GET_ITEMS_FULFILLED' = 'GET_ITEMS_FULFILLED';
 export const GET_ITEMS_ERROR: 'GET_ITEMS_ERROR' = 'GET_ITEMS_ERROR';
 export const INCREMENT_ITEM: 'INCREMENT_ITEM' = 'INCREMENT_ITEM';
 export const DECREMENT_ITEM: 'DECREMENT_ITEM' = 'DECREMENT_ITEM';
+export const CLEAR_COUNT: 'CLEAR_COUNT' = 'CLEAR_COUNT';
 
 export type TGetItemsPendingAction = {
   readonly type: typeof GET_ITEMS_PENDING;
@@ -13,22 +14,26 @@ export type TGetItemsPendingAction = {
 
 export type TGetItemsFulFilledAction = {
   readonly type: typeof GET_ITEMS_FULFILLED;
-  payload: TIngredient[];
+  readonly payload: TIngredient[];
 };
 
 export type TGetItemsErrorAction = {
   readonly type: typeof GET_ITEMS_ERROR;
-  payload: TError | undefined;
+  readonly payload: TError | undefined;
 };
 
 export type TIncrementItemAction = {
   readonly type: typeof INCREMENT_ITEM;
-  payload: string;
+  readonly payload: string;
 };
 
 export type TDecrementItemAction = {
   readonly type: typeof DECREMENT_ITEM;
-  payload: string;
+  readonly payload: string;
+};
+
+export type TClearCountAction = {
+  readonly type: typeof CLEAR_COUNT;
 };
 
 export type TIngredientActions =
@@ -36,7 +41,8 @@ export type TIngredientActions =
   | TGetItemsFulFilledAction
   | TGetItemsErrorAction
   | TIncrementItemAction
-  | TDecrementItemAction;
+  | TDecrementItemAction
+  | TClearCountAction;
 
 export const setItems = (items: TIngredient[]): TGetItemsFulFilledAction => ({
   type: GET_ITEMS_FULFILLED,
@@ -60,6 +66,10 @@ export const increment = (id: string): TIncrementItemAction => ({
 export const decrement = (id: string): TDecrementItemAction => ({
   type: DECREMENT_ITEM,
   payload: id
+});
+
+export const clearCount = (): TClearCountAction => ({
+  type: CLEAR_COUNT
 });
 
 export const getItems: AppThunk = () => async (dispatch, getState) => {

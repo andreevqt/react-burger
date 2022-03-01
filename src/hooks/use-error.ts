@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../services/store';
 
 import { setError as setIngredientsError } from '../services/actions/ingredients';
 import { setError as setOrderError } from '../services/actions/order';

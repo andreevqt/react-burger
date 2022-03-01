@@ -1,8 +1,7 @@
-
 import { API_SERVER_URL } from '../../constants';
 import { setAuthData } from '../actions/auth';
 import decode from '../../utils/parse-jwt';
-import store, { AppDispatch, AppThunk } from '../store';
+import store from '../store';
 
 export class HttpError extends Error {
   response: any;

@@ -13,7 +13,7 @@ const OrderDetails: React.FC<TOrderDetailsProps> = ({
   status
 }) => (
   <>
-    <span className={classNames(orderDetailsStyles['id'], 'text text_type_digits-large')}>
+    <span className={classNames(orderDetailsStyles['id'], 'text text_glowing text_type_digits-large')}>
       {orderId}
     </span>
     <h5 className={classNames(orderDetailsStyles['title'], 'text text_type_main-medium mt-8 mb-15')}>
