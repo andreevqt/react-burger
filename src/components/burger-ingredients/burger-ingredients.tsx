@@ -14,7 +14,7 @@ import throttle from '../../utils/throttle';
 import IngredientSkeleton from './ingredients-skeleton/ingredients-skeleton';
 import useIngredients from '../../hooks/use-ingredients';
 import useAuth from '../../hooks/use-auth';
-import { TIngredient, TIngredientType } from '../../types/ingredients';
+import { TIngredient, TIngredientType } from '../../services/api';
 
 const BurgerIngredients: React.FC = () => {
   const tabs = {

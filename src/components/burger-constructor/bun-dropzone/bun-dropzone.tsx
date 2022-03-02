@@ -3,7 +3,7 @@ import { useDrop } from 'react-dnd';
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import classNames from 'classnames';
 import bunDropzoneStyles from './bun-dropzone.module.css';
-import { TIngredient } from '../../../types/ingredients';
+import { TIngredient } from '../../../services/api';
 
 type TBunDropzoneProps = {
   type?: 'top' | 'bottom';

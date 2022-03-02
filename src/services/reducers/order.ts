@@ -3,15 +3,23 @@ import {
   SUBMIT_ORDER_PENDING,
   SUBMIT_ORDER_FULFILLED,
   CLEAR_ORDER,
+  TOrderActions,
+  TOrder
 } from '../actions/order';
 
-const initialState = {
-  error: null,
-  order: null,
+type TOrderState = {
+  error: string | object | undefined;
+  order: TOrder | undefined;
+  isLoading: boolean;
+};
+
+const initialState: TOrderState = {
+  error: undefined,
+  order: undefined,
   isLoading: false,
 };
 
-export default (state = initialState, action = {}) => {
+const order = (state: TOrderState = initialState, action: TOrderActions): TOrderState => {
   switch (action.type) {
     case SUBMIT_ORDER_ERROR: {
       const error = action.payload;
@@ -32,9 +40,11 @@ export default (state = initialState, action = {}) => {
       };
     }
     case CLEAR_ORDER: {
-      return { ...state, order: null };
+      return { ...state, order: undefined };
     }
     default:
       return state;
   }
 };
+
+export default order;

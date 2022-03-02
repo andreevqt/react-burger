@@ -1,0 +1,38 @@
+.image-gradient {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 50%;
+  background: linear-gradient(45deg, rgba(128, 26, 178, 1), rgba(76, 76, 255, 1));
+}
+
+.more {
+  background-color: rgba(28, 28, 33, 0.6);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-wrapper {
+  position: relative;
+  background-color: var(--background-alt);
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.image {
+  object-position: center;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}

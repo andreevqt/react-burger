@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../services/store';
 
 import { setError as setIngredientsError } from '../services/actions/ingredients';
 import { setError as setOrderError } from '../services/actions/order';
@@ -24,10 +24,10 @@ const useError = () => {
   const dispatch = useDispatch();
 
   const clearError = () => {
-    dispatch(setIngredientsError(null));
-    dispatch(setOrderError(null));
-    dispatch(setAuthError(null));
-    dispatch(setPasswordError(null));
+    dispatch(setIngredientsError(undefined));
+    dispatch(setOrderError(undefined));
+    dispatch(setAuthError(undefined));
+    dispatch(setPasswordError(undefined));
   };
 
   return {

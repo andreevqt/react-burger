@@ -7,7 +7,7 @@ import Row from '../../components/grid/row/row';
 import Base from '../../components/layout/base/base';
 import useIngredients from '../../hooks/use-ingredients';
 import IngredientSkeleton from './ingredient-skeleton/ingredient-skeleton';
-import { TIngredient } from '../../types/ingredients';
+import { TIngredient } from '../../services/api';
 
 const Ingredient = () => {
   const { ingredients, isLoading } = useIngredients();

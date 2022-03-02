@@ -3,7 +3,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import Modal from '../modal/modal';
 import useIngredients from '../../hooks/use-ingredients';
 import IngredientDetails from '../ingredient-details/ingredient-details';
-import { TIngredient } from '../../types/ingredients';
+import { TIngredient } from '../../services/api';
 
 const IngredientModal: React.FC = () => {
   const { id } = useParams<{ id: string }>();

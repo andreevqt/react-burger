@@ -1,19 +1,30 @@
+import { TIngredient } from '../api';
+
 import {
   GET_ITEMS_PENDING,
   GET_ITEMS_FULFILLED,
   GET_ITEMS_ERROR,
   INCREMENT_ITEM,
   DECREMENT_ITEM,
+  TIngredientActions,
+  CLEAR_COUNT
 } from '../actions/ingredients';
 
-const initialState = {
+type TIngredientsState = {
+  isLoading: boolean;
+  error: string | object | undefined;
+  bun: TIngredient | undefined;
+  items: TIngredient[];
+}
+
+const initialState: TIngredientsState = {
   isLoading: false,
-  error: null,
-  bun: null,
+  error: undefined,
+  bun: undefined,
   items: [],
 };
 
-export default (state = initialState, action = {}) => {
+const ingredients = (state = initialState, action: TIngredientActions): TIngredientsState => {
   switch (action.type) {
     case GET_ITEMS_PENDING: {
       return { ...state, isLoading: true };
@@ -22,7 +33,7 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         items: action.payload,
-        error: null,
+        error: undefined,
         isLoading: false,
       };
     }
@@ -44,12 +55,20 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         items: state.items.map((item) => (item._id === id
-          ? { ...item, count: item.count > 1 ? item.count - 1 : undefined }
+          ? { ...item, count: item.count && item.count > 1 ? item.count - 1 : undefined }
           : item
         )),
+      };
+    }
+    case CLEAR_COUNT: {
+      return {
+        ...state,
+        items: state.items.map((item) => ({ ...item, count: undefined }))
       };
     }
     default:
       return state;
   }
 };
+
+export default ingredients;

@@ -10,7 +10,7 @@ import Buttons from './buttons/buttons';
 import { addItem, deleteItem, swapItems } from '../../services/actions/burger-constructor';
 import { submitOrder, clearOrder } from '../../services/actions/order';
 import useAuth from '../../hooks/use-auth';
-import { TIngredient } from '../../types/ingredients';
+import { TIngredient } from '../../services/api';
 
 const BurgerConstructor: React.FC = () => {
   const dispatch = useDispatch();

@@ -6,11 +6,6 @@
   align-items: center;
 }
 
-.id {
-  text-shadow: 0px 0px 16px rgba(var(--colors-interface-glow), 0.25),
-    0px 0px 8px rgba(var(--colors-interface-glow), 0.25), 0px 4px 32px rgba(var(--colors-interface-glow), 0.5);
-}
-
 .close-btn {
   position: absolute;
   top: 60px;

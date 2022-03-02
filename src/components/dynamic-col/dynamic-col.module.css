@@ -1,0 +1,17 @@
+.wrapper {
+  overflow-x: auto;
+}
+
+.columns {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.column {
+  flex: 1 0 50%;
+}
+
+.done {
+  color: var(--colors-interface-success);
+}

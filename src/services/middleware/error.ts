@@ -1,8 +1,9 @@
+import { Middleware } from 'redux';
 import { AUTH_ERROR } from '../actions/auth';
 import { GET_ITEMS_ERROR } from '../actions/ingredients';
 import { SUBMIT_ORDER_ERROR } from '../actions/order';
 
-const error = ({ dispatch, getState }) => (next) => (action) => {
+const error: Middleware = ({ dispatch, getState }) => (next) => (action) => {
   const state = getState();
 
   if (

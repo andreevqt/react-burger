@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import ingredientsDropzoneStyles from './ingredients-dropzone.module.css';
 import CustomScroll from '../../custom-scroll/custom-scroll';
 import SortableIngredient from './sortable-ingredient/sortable-ingredient';
-import { TIngredient } from '../../../types/ingredients';
+import { TIngredient } from '../../../services/api';
 
 type TIngredientsDropzoneProps = {
   items: Array<TIngredient>;

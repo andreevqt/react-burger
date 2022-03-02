@@ -1,13 +1,21 @@
-import { AUTH_ERROR, AUTH_FULFILLED, AUTH_PENDING } from '../actions/auth';
+import { AUTH_ERROR, AUTH_FULFILLED, AUTH_PENDING, TAuthActions } from '../actions/auth';
+import { TUser } from '../api'
 
-const initialState = {
-  isLoading: false,
-  accessToken: null,
-  user: null,
-  error: null
+type TAuthState = {
+  isLoading: boolean;
+  accessToken: string | undefined;
+  user: TUser | undefined;
+  error: Object | string | undefined;
 };
 
-export default (state = initialState, action = {}) => {
+const initialState: TAuthState = {
+  isLoading: false,
+  accessToken: undefined,
+  user: undefined,
+  error: undefined
+};
+
+const auth = (state: TAuthState = initialState, action: TAuthActions): TAuthState => {
   switch (action.type) {
     case AUTH_ERROR: {
       const error = action.payload;
@@ -31,9 +39,9 @@ export default (state = initialState, action = {}) => {
       const { user, accessToken } = action.payload;
       return {
         ...state,
-        isLoading: false,
         user,
-        accessToken
+        isLoading: false,
+        ...(accessToken && { accessToken })
       };
     }
     default: {
@@ -41,3 +49,5 @@ export default (state = initialState, action = {}) => {
     }
   }
 };
+
+export default auth;

@@ -1,0 +1,8 @@
+.scroll {
+  max-height: 320px;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+}
