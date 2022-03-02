@@ -55,7 +55,12 @@ const OrderInfo: React.FC<TOrderInfoProps> = ({
       </h4>
       <CustomScroll className={orderInfoStyles['scroll']}>
         {
-          ingredientsToRender.map((ingredient) => ingredient && (<IngredientRow ingredient={ingredient} />))
+          ingredientsToRender.map((ingredient) => ingredient && (
+            <IngredientRow
+              key={ingredient._id}
+              ingredient={ingredient}
+            />)
+          )
         }
       </CustomScroll>
       <div className={metaClasses}>

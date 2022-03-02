@@ -19,7 +19,6 @@ import { TState } from '../../types/history';
 const CustomSwitch: React.FC = () => {
   const location = useLocation<TState>();
   const background = location.state && location.state.background;
-  console.log('here');
 
   return (
     <>
