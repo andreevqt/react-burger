@@ -16,7 +16,7 @@ const initialState: TFeedState = {
   totalToday: 0,
 };
 
-export default (state: TFeedState = initialState, action: TFeedActions): TFeedState => {
+const feed = (state: TFeedState = initialState, action: TFeedActions): TFeedState => {
   switch (action.type) {
     case FEED_WS_SUCCESS: {
       return {
@@ -43,3 +43,5 @@ export default (state: TFeedState = initialState, action: TFeedActions): TFeedSt
     }
   }
 };
+
+export default feed;

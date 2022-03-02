@@ -19,7 +19,7 @@ const initialState: TOrderState = {
   isLoading: false,
 };
 
-export default (state: TOrderState = initialState, action: TOrderActions): TOrderState => {
+const order = (state: TOrderState = initialState, action: TOrderActions): TOrderState => {
   switch (action.type) {
     case SUBMIT_ORDER_ERROR: {
       const error = action.payload;
@@ -46,3 +46,5 @@ export default (state: TOrderState = initialState, action: TOrderActions): TOrde
       return state;
   }
 };
+
+export default order;

@@ -9,7 +9,7 @@ import CustomSwitch from '../custom-switch/custom-switch';
 import useIngredients from '../../hooks/use-ingredients';
 
 const App: React.FC = () => {
-  const { isLoading, getUser, user } = useAuth();
+  const { isLoading, getUser } = useAuth();
   const { getItems } = useIngredients();
 
   useEffect(() => {

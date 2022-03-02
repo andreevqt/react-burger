@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import classNames from 'classnames';
 import { TOrder } from '../../services/api';
 import useIngredients from '../../hooks/use-ingredients';
@@ -22,7 +22,7 @@ const OrderInfo: React.FC<TOrderInfoProps> = ({
 
   const ingredientsToRender = useMemo(
     () => collect(order.ingredients),
-    [order.ingredients, ingredients]
+    [order.ingredients, ingredients, collect]
   );
 
   const date = useMemo(
@@ -32,7 +32,7 @@ const OrderInfo: React.FC<TOrderInfoProps> = ({
 
   const amount = useMemo(
     () => calculateAmount(ingredientsToRender),
-    [ingredientsToRender]
+    [ingredientsToRender, calculateAmount]
   );
 
   const idClasses = classNames('text text_type_digits-default', { 'tac': !withinModal })

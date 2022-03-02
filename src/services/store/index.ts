@@ -1,6 +1,6 @@
 import thunk, { ThunkAction } from 'redux-thunk';
 import { useDispatch as dispatchHook, useSelector as selectorHook, TypedUseSelectorHook } from 'react-redux';
-import { compose, createStore, applyMiddleware, Action, ActionCreator } from 'redux';
+import { compose, createStore, applyMiddleware, ActionCreator } from 'redux';
 import error from '../middleware/error';
 import ws from '../middleware/ws';
 import rootReducer from '../reducers';

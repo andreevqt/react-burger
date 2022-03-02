@@ -21,7 +21,7 @@ const initialState: THistoryState = {
   totalToday: 0,
 };
 
-export default (state: THistoryState = initialState, action: THistoryActions): THistoryState => {
+const history = (state: THistoryState = initialState, action: THistoryActions): THistoryState => {
   switch (action.type) {
     case HISTORY_WS_SUCCESS: {
       return {
@@ -45,3 +45,5 @@ export default (state: THistoryState = initialState, action: THistoryActions): T
     }
   }
 };
+
+export default history;

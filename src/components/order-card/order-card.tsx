@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import classNames from 'classnames';
 import orderCardStyles from './order-card.module.css';
 import { TOrder } from '../../services/api';
@@ -60,7 +60,7 @@ const OrderCard: React.FC<TOrderProps> = ({
       images,
       totalAmount
     };
-  }, [ingredients]);
+  }, [ingredients, calculateAmount, collect, moreClasses, order.ingredients]);
 
   const date = useMemo(() => formatTime(order.createdAt), [order.createdAt]);
 

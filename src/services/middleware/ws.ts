@@ -1,6 +1,6 @@
 import { Middleware } from 'redux';
 
-export default (wsUrl: string, prefix: string, needsAuth: boolean = false): Middleware => {
+const ws = (wsUrl: string, prefix: string, needsAuth: boolean = false): Middleware => {
   return ({ getState, dispatch }) => {
     let socket: WebSocket | undefined = undefined;
     return (next) => (action) => {
@@ -51,3 +51,5 @@ export default (wsUrl: string, prefix: string, needsAuth: boolean = false): Midd
     };
   };
 };
+
+export default ws;

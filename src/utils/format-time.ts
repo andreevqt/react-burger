@@ -1,6 +1,6 @@
 import moment from './moment'
 
-export default (time: string) => moment(time).calendar(null, {
+const formatTime = (time: string) => moment(time).calendar(null, {
   sameDay: '[Сегодня], HH:mm',
   nextDay: '[Завтра], HH:mm',
   nextWeek: '[На следующей неделе], dddd HH:mm',
@@ -8,3 +8,5 @@ export default (time: string) => moment(time).calendar(null, {
   lastWeek: '[На прошлой неделе], dddd HH:mm',
   sameElse: 'DD.MM.YYYY, HH:mm'
 });
+
+export default formatTime;

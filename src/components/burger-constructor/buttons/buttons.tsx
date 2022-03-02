@@ -1,5 +1,5 @@
 import React, { SyntheticEvent } from 'react';
-import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import classNames from 'classnames';
 import buttonsStyles from './buttons.module.css';
 import TotalPrice from '../../total-price/total-price';

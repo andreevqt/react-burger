@@ -19,7 +19,7 @@ const initialState: TOrderInfoState = {
   error: undefined
 };
 
-export default (state = initialState, action: TOrderInfoActions): TOrderInfoState => {
+const orderInfo = (state = initialState, action: TOrderInfoActions): TOrderInfoState => {
   switch (action.type) {
     case ORDER_INFO_ERROR: {
       const error = action.payload;
@@ -49,3 +49,5 @@ export default (state = initialState, action: TOrderInfoActions): TOrderInfoStat
       return state;
   }
 };
+
+export default orderInfo;

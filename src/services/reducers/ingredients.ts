@@ -24,7 +24,7 @@ const initialState: TIngredientsState = {
   items: [],
 };
 
-export default (state = initialState, action: TIngredientActions): TIngredientsState => {
+const ingredients = (state = initialState, action: TIngredientActions): TIngredientsState => {
   switch (action.type) {
     case GET_ITEMS_PENDING: {
       return { ...state, isLoading: true };
@@ -70,3 +70,5 @@ export default (state = initialState, action: TIngredientActions): TIngredientsS
       return state;
   }
 };
+
+export default ingredients;
