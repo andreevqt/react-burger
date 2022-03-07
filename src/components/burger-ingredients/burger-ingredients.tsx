@@ -39,7 +39,7 @@ const BurgerIngredients: React.FC = () => {
   ), [ingredients]);
 
   const onIngredientClick = (item: TIngredient) => () => {
-    history.replace({
+    history.push({
       pathname: `/ingredients/${item._id}`,
       state: { background: location }
     });

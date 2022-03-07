@@ -15,7 +15,7 @@ const IngredientModal: React.FC = () => {
     [id, ingredients]
   );
 
-  const closeModal = () => history.replace({ pathname: '/' });
+  const closeModal = () => history.goBack();
 
   return ingredient ? (
     <Modal

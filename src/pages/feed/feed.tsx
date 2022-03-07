@@ -29,7 +29,7 @@ const Feed: React.FC = () => {
     .map((order) => order.number), [orders]);
 
   const onOrderClick = (number: number) => () => {
-    history.replace({
+    history.push({
       pathname: `/feed/${number}`,
       state: { background: location }
     });

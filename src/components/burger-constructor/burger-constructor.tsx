@@ -46,7 +46,7 @@ const BurgerConstructor: React.FC = () => {
 
   const onSubmit = () => {
     if (!user) {
-      history.replace({ pathname: '/login', state: { from: location } });
+      history.push({ pathname: '/login', state: { from: location } });
       return;
     }
 

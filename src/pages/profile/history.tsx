@@ -20,7 +20,7 @@ const History: React.FC = () => {
   }, []);
 
   const onOrderClick = (number: number) => () => {
-    history.replace({
+    history.push({
       pathname: `${path}/${number}`,
       state: { background: location }
     });

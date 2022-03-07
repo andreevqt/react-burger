@@ -29,7 +29,7 @@ const Modal: React.FC<TModalProps> = ({
     return <NoMatch />;
   }
 
-  const closeModal = () => history.replace({ pathname: redirectTo });
+  const closeModal = () => history.goBack();
 
   return order ? (
     <ModalBase
