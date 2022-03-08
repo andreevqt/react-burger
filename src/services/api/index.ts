@@ -93,6 +93,11 @@ export type TError = string | {
   }
 };
 
+export type TAuthData = {
+  user?: TUser;
+  accessToken?: string;
+};
+
 export type TUpdateProps = {
   name?: string;
   password?: string;

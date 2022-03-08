@@ -1,11 +1,11 @@
-import { SET_LAST_ERROR, TCommonActions } from '../actions/common';
+import { SET_LAST_ERROR, TCommonActions } from '../action-types/common';
 import { TError } from '../api'
 
-type TCommonState = {
+export type TCommonState = {
   lastErr: TError | undefined;
 };
 
-const initialState: TCommonState = {
+export const initialState: TCommonState = {
   lastErr: undefined
 };
 

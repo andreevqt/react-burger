@@ -1,4 +1,9 @@
-import { AUTH_ERROR, AUTH_FULFILLED, AUTH_PENDING, TAuthActions } from '../actions/auth';
+import {
+  AUTH_ERROR,
+  AUTH_FULFILLED,
+  AUTH_PENDING,
+  TAuthActions
+} from '../action-types/auth';
 import { TUser } from '../api'
 
 type TAuthState = {
@@ -7,7 +12,7 @@ type TAuthState = {
   user: TUser | undefined;
 };
 
-const initialState: TAuthState = {
+export const initialState: TAuthState = {
   isLoading: false,
   accessToken: undefined,
   user: undefined,

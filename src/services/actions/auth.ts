@@ -1,37 +1,14 @@
-import api, { TUpdateProps, TUser, } from '../api';
+import api, { TUpdateProps, TAuthData } from '../api';
 import { AppThunk, AppDispatch } from '../store';
 import { setLastError } from './common';
-
-export const AUTH_PENDING: 'AUTH_PENDING' = 'AUTH_PENDING';
-export const AUTH_ERROR: 'AUTH_ERROR' = 'AUTH_ERROR';
-export const AUTH_FULFILLED: 'AUTH_FULFILLED' = 'AUTH_FULFILLED';
-
-export type TAuthData = {
-  user?: TUser;
-  accessToken?: string;
-};
-
-export type TAuthPendingAction = {
-  readonly type: typeof AUTH_PENDING;
-};
-
-export type TAuthErrorAction = {
-  readonly type: typeof AUTH_ERROR;
-};
-
-export type TAuthFulfilledAction = {
-  readonly type: typeof AUTH_FULFILLED;
-  readonly payload: TAuthData | undefined;
-};
-
-export type TAuthActions =
-  | TAuthPendingAction
-  | TAuthErrorAction
-  | TAuthFulfilledAction;
-
-export const setLoading = (): TAuthPendingAction => ({
-  type: AUTH_PENDING
-});
+import {
+  AUTH_ERROR,
+  AUTH_FULFILLED,
+  AUTH_PENDING,
+  TAuthErrorAction,
+  TAuthFulfilledAction,
+  TAuthPendingAction
+} from '../action-types/auth';
 
 export const setError = (): TAuthErrorAction => ({
   type: AUTH_ERROR
@@ -40,6 +17,10 @@ export const setError = (): TAuthErrorAction => ({
 export const setAuthData = (data: TAuthData | undefined): TAuthFulfilledAction => ({
   type: AUTH_FULFILLED,
   payload: data
+});
+
+export const setLoading = (): TAuthPendingAction => ({
+  type: AUTH_PENDING
 });
 
 export const register: AppThunk = (email: string, password: string, name: string) => async (dispatch: AppDispatch) => {

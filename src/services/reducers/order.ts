@@ -5,14 +5,14 @@ import {
   CLEAR_ORDER,
   TOrderActions,
   TOrder
-} from '../actions/order';
+} from '../action-types/order';
 
-type TOrderState = {
+export type TOrderState = {
   order: TOrder | undefined;
   isLoading: boolean;
 };
 
-const initialState: TOrderState = {
+export const initialState: TOrderState = {
   order: undefined,
   isLoading: false
 };

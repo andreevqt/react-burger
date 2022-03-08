@@ -1,5 +1,4 @@
 import { TIngredient } from '../api';
-
 import {
   GET_ITEMS_PENDING,
   GET_ITEMS_FULFILLED,
@@ -8,17 +7,15 @@ import {
   DECREMENT_ITEM,
   TIngredientActions,
   CLEAR_COUNT
-} from '../actions/ingredients';
+} from '../action-types/ingredients';
 
-type TIngredientsState = {
+export type TIngredientsState = {
   isLoading: boolean;
-  bun: TIngredient | undefined;
   items: TIngredient[];
 }
 
-const initialState: TIngredientsState = {
+export const initialState: TIngredientsState = {
   isLoading: false,
-  bun: undefined,
   items: [],
 };
 

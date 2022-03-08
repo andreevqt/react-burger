@@ -1,17 +1,17 @@
+import { Step } from '../action-types/forgot-password';
 import {
   FORGOT_PASSWORD_ERROR,
   FORGOT_PASSWORD_FULFILLED,
   FORGOT_PASSWORD_PENDING,
   TForgotPasswordActions,
-  Step
-} from '../actions/forgot-password';
+} from '../action-types/forgot-password';
 
-type TForgotPasswordState = {
+export type TForgotPasswordState = {
   isLoading: boolean;
   step: Step;
 };
 
-const initialState: TForgotPasswordState = {
+export const initialState: TForgotPasswordState = {
   isLoading: false,
   step: Step.CODE
 };

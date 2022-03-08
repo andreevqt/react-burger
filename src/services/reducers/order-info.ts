@@ -5,14 +5,14 @@ import {
   ORDER_INFO_FULFILLED,
   ORDER_INFO_PENING,
   ORDER_INFO_CLEAR
-} from '../actions/order-info';
+} from '../action-types/order-info';
 
-type TOrderInfoState = {
+export type TOrderInfoState = {
   order: TOrder | undefined;
   isPending: boolean;
 };
 
-const initialState: TOrderInfoState = {
+export const initialState: TOrderInfoState = {
   order: undefined,
   isPending: false,
 };

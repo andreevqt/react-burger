@@ -7,7 +7,7 @@ import useForm, { TFields } from '../../hooks/use-form';
 import useAuth from '../../hooks/use-auth';
 import useForgotPassword from '../../hooks/use-forgot-password';
 import WithLoader from '../../components/with-loader/with-loader';
-import { Step } from '../../services/actions/forgot-password';
+import { Step } from '../../services/action-types/forgot-password';
 
 const ForgotPassword: React.FC = () => {
   const { register, errors, handleSubmit } = useForm({

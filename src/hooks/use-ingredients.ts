@@ -19,8 +19,7 @@ const useIngredients = () => {
 
   const {
     items,
-    isLoading,
-    bun
+    isLoading
   } = useSelector((store) => store.ingredients);
 
   const getItems = () => dispatch(getItemsAction());
@@ -49,7 +48,6 @@ const useIngredients = () => {
   return {
     items,
     isLoading,
-    bun,
     getItems,
     collect,
     calculateAmount,

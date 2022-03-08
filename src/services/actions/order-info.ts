@@ -1,35 +1,15 @@
 import api, { TOrder } from '../api';
 import { AppThunk } from '../store';
 import { setLastError } from './common';
-
-export const ORDER_INFO_PENING: 'ORDER_INFO_PENING' = 'ORDER_INFO_PENING';
-export const ORDER_INFO_FULFILLED: 'ORDER_INFO_FULFILLED' = 'ORDER_INFO_FULFILLED';
-export const ORDER_INFO_ERROR: 'ORDER_INFO_ERROR' = 'ORDER_INFO_ERROR';
-
-export const ORDER_INFO_CLEAR: 'ORDER_INFO_CLEAR' = 'ORDER_INFO_CLEAR';
-
-export type TOrderInfoPendingAction = {
-  readonly type: typeof ORDER_INFO_PENING;
-};
-
-export type TOrderInfoErrorAction = {
-  readonly type: typeof ORDER_INFO_ERROR;
-};
-
-export type TOrderInfoFulfilledAction = {
-  readonly type: typeof ORDER_INFO_FULFILLED;
-  readonly payload: TOrder | undefined;
-};
-
-export type TOrderInfoClearAction = {
-  readonly type: typeof ORDER_INFO_CLEAR;
-}
-
-export type TOrderInfoActions =
-  | TOrderInfoPendingAction
-  | TOrderInfoErrorAction
-  | TOrderInfoFulfilledAction
-  | TOrderInfoClearAction;
+import {
+  ORDER_INFO_ERROR,
+  ORDER_INFO_CLEAR,
+  ORDER_INFO_FULFILLED,
+  ORDER_INFO_PENING,
+  TOrderInfoErrorAction,
+  TOrderInfoFulfilledAction,
+  TOrderInfoClearAction
+} from '../action-types/order-info'
 
 export const setLoading = () => ({
   type: ORDER_INFO_PENING

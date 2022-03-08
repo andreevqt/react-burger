@@ -10,7 +10,7 @@ import useForgotPassword from '../../hooks/use-forgot-password';
 import useForm, { TFields } from '../../hooks/use-form';
 import useAuth from '../../hooks/use-auth';
 import WithLoader from '../../components/with-loader/with-loader';
-import { Step } from '../../services/actions/forgot-password';
+import { Step } from '../../services/action-types/forgot-password';
 
 const ResetPassword: React.FC = () => {
   const { step, reset, isLoading } = useForgotPassword();

@@ -4,7 +4,7 @@ import {
   CONSTRUCTOR_RESET,
   CONSTRUCTOR_SWAP_ITEMS,
   TConstructorActions
-} from '../actions/burger-constructor';
+} from '../action-types/burger-constructor';
 
 import { TIngredient } from '../api';
 
@@ -13,7 +13,7 @@ type TBurgerConstructorState = {
   items: TIngredient[];
 };
 
-const initialState: TBurgerConstructorState = {
+export const initialState: TBurgerConstructorState = {
   bun: undefined,
   items: []
 };
