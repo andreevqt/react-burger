@@ -6,7 +6,7 @@ import {
 } from '../action-types/auth';
 import { TUser } from '../api'
 
-type TAuthState = {
+export type TAuthState = {
   isLoading: boolean;
   accessToken: string | undefined;
   user: TUser | undefined;

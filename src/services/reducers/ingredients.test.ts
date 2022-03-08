@@ -36,15 +36,15 @@ describe('ingredients reducer', () => {
       calories: 99,
       carbohydrates: 42,
       fat: 24,
-      image: "https://code.s3.yandex.net/react/code/sauce-03.png",
-      image_large: "https://code.s3.yandex.net/react/code/sauce-03-large.png",
-      image_mobile: "https://code.s3.yandex.net/react/code/sauce-03-mobile.png",
-      name: "Соус традиционный галактический",
+      image: 'https://code.s3.yandex.net/react/code/sauce-03.png',
+      image_large: 'https://code.s3.yandex.net/react/code/sauce-03-large.png',
+      image_mobile: 'https://code.s3.yandex.net/react/code/sauce-03-mobile.png',
+      name: 'Соус традиционный галактический',
       price: 15,
       proteins: 42,
-      type: "sauce",
+      type: 'sauce',
       __v: 0,
-      _id: "60d3b41abdacab0026a733ce",
+      _id: '60d3b41abdacab0026a733ce',
     };
 
     const action: TGetItemsFulFilledAction = {
@@ -64,15 +64,15 @@ describe('ingredients reducer', () => {
       calories: 99,
       carbohydrates: 42,
       fat: 24,
-      image: "https://code.s3.yandex.net/react/code/sauce-03.png",
-      image_large: "https://code.s3.yandex.net/react/code/sauce-03-large.png",
-      image_mobile: "https://code.s3.yandex.net/react/code/sauce-03-mobile.png",
-      name: "Соус традиционный галактический",
+      image: 'https://code.s3.yandex.net/react/code/sauce-03.png',
+      image_large: 'https://code.s3.yandex.net/react/code/sauce-03-large.png',
+      image_mobile: 'https://code.s3.yandex.net/react/code/sauce-03-mobile.png',
+      name: 'Соус традиционный галактический',
       price: 15,
       proteins: 42,
-      type: "sauce",
+      type: 'sauce',
       __v: 0,
-      _id: "60d3b41abdacab0026a733ce"
+      _id: '60d3b41abdacab0026a733ce'
     };
 
     const state: TIngredientsState = {
