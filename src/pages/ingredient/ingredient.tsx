@@ -10,7 +10,7 @@ import IngredientSkeleton from './ingredient-skeleton/ingredient-skeleton';
 import { TIngredient } from '../../services/api';
 
 const Ingredient = () => {
-  const { ingredients, isLoading } = useIngredients();
+  const { items, isLoading } = useIngredients();
   const { id } = useParams<{ id: string }>();
 
   const firstRender = useRef(true);
@@ -22,8 +22,8 @@ const Ingredient = () => {
   });
 
   const ingredient = useMemo(
-    () => ingredients.find((item: TIngredient) => item._id === id),
-    [id, ingredients]
+    () => items.find((item: TIngredient) => item._id === id),
+    [id, items]
   );
 
   const notFound = !isLoading && !ingredient && !firstRender.current;

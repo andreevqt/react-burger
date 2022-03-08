@@ -12,12 +12,12 @@ export type TConstructorAddItemAction = {
 
 export type TConstructorSwapItemsAction = {
   readonly type: typeof CONSTRUCTOR_SWAP_ITEMS;
-  payload: { dragIndex: number; hoverIndex: number };
+  readonly payload: { dragIndex: number; hoverIndex: number };
 };
 
 export type TConstructorDeleteItem = {
   readonly type: typeof CONSTRUCTOR_DELETE_ITEM;
-  payload: number;
+  readonly payload: number;
 };
 
 export type TConstructorResetAction = {

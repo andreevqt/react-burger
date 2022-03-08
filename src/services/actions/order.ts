@@ -1,7 +1,8 @@
-import api, { TError } from '../api';
+import api from '../api';
 import { AppThunk } from '../store';
 import { reset } from './burger-constructor';
 import { clearCount } from './ingredients';
+import { setLastError } from './common';
 
 export const SUBMIT_ORDER_PENDING: 'SUBMIT_ORDER_PENDING' = 'SUBMIT_ORDER_PENDING';
 export const SUBMIT_ORDER_FULFILLED: 'SUBMIT_ORDER_FULFILLED' = 'SUBMIT_ORDER_FULFILLED';
@@ -19,7 +20,6 @@ export type TSubmitOrderPendingAction = {
 
 export type TSubmitOrderErrorAction = {
   readonly type: typeof SUBMIT_ORDER_ERROR;
-  payload: TError | undefined;
 };
 
 export type TSubmitOrderFulfilledAction = {
@@ -42,9 +42,8 @@ export const setOrder = (order: TOrder): TSubmitOrderFulfilledAction => ({
   payload: order
 });
 
-export const setError = (err: TError | undefined): TSubmitOrderErrorAction => ({
+export const setError = (): TSubmitOrderErrorAction => ({
   type: SUBMIT_ORDER_ERROR,
-  payload: err
 });
 
 export const setLoading = (): TSubmitOrderPendingAction => ({
@@ -75,6 +74,7 @@ export const submitOrder: AppThunk = () => async (dispatch, getState) => {
     dispatch(reset());
     dispatch(clearCount());
   } catch (err: any) {
-    dispatch(setError(err.message));
+    dispatch(setLastError(err));
+    dispatch(setError());
   }
 };

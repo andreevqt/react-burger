@@ -12,14 +12,12 @@ import {
 
 type TIngredientsState = {
   isLoading: boolean;
-  error: string | object | undefined;
   bun: TIngredient | undefined;
   items: TIngredient[];
 }
 
 const initialState: TIngredientsState = {
   isLoading: false,
-  error: undefined,
   bun: undefined,
   items: [],
 };
@@ -33,12 +31,11 @@ const ingredients = (state = initialState, action: TIngredientActions): TIngredi
       return {
         ...state,
         items: action.payload,
-        error: undefined,
         isLoading: false,
       };
     }
     case GET_ITEMS_ERROR: {
-      return { ...initialState, error: action.payload };
+      return initialState;
     }
     case INCREMENT_ITEM: {
       const id = action.payload;

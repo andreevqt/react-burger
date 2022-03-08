@@ -25,18 +25,18 @@ const BurgerIngredients: React.FC = () => {
 
   const itemsRefs = useRef<{ [name in TIngredientType]: HTMLDivElement | null }>({ bun: null, sauce: null, main: null });
   const [currentTab, setCurrentTab] = useState('bun');
-  const { ingredients, isLoading } = useIngredients();
+  const { items, isLoading } = useIngredients();
   const { isLoading: isAuthLoading } = useAuth();
 
   const history = useHistory();
   const location = useLocation();
 
   const itemsToRender = useMemo(() => (
-    ingredients.reduce((acc: { bun: Array<TIngredient>; sauce: Array<TIngredient>; main: Array<TIngredient> }, item: TIngredient) => {
+    items.reduce((acc: { bun: Array<TIngredient>; sauce: Array<TIngredient>; main: Array<TIngredient> }, item: TIngredient) => {
       acc[item.type] = [...acc[item.type], item];
       return acc;
     }, { bun: [], sauce: [], main: [] })
-  ), [ingredients]);
+  ), [items]);
 
   const onIngredientClick = (item: TIngredient) => () => {
     history.push({

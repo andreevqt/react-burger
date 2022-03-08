@@ -3,6 +3,7 @@ import { useHistory, useLocation, useRouteMatch } from 'react-router-dom';
 import ProfileLayout from '../../components/layout/profile/profile';
 import useOrderHistory from '../../hooks/use-order-history';
 import OrderCard from '../../components/order-card/order-card';
+import CustomScroll from '../../components/custom-scroll/custom-scroll';
 
 const History: React.FC = () => {
   const { orders, init, close } = useOrderHistory();
@@ -15,7 +16,7 @@ const History: React.FC = () => {
     init();
 
     return () => {
-      close();      
+      close();
     };
   }, []);
 
@@ -30,7 +31,7 @@ const History: React.FC = () => {
     <ProfileLayout
       description="В этом разделе вы можете просмотреть свою историю заказов"
       content={
-        <div className="mt-10">
+        <CustomScroll className="mt-10" grow>
           {
             orders.map((order) => (
               <OrderCard
@@ -41,7 +42,7 @@ const History: React.FC = () => {
               />
             ))
           }
-        </div>
+        </CustomScroll>
       }
     />
   );

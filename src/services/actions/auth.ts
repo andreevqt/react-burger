@@ -1,5 +1,6 @@
-import api, { TError, TUpdateProps, TUser, } from '../api';
+import api, { TUpdateProps, TUser, } from '../api';
 import { AppThunk, AppDispatch } from '../store';
+import { setLastError } from './common';
 
 export const AUTH_PENDING: 'AUTH_PENDING' = 'AUTH_PENDING';
 export const AUTH_ERROR: 'AUTH_ERROR' = 'AUTH_ERROR';
@@ -16,7 +17,6 @@ export type TAuthPendingAction = {
 
 export type TAuthErrorAction = {
   readonly type: typeof AUTH_ERROR;
-  readonly payload: TError | undefined;
 };
 
 export type TAuthFulfilledAction = {
@@ -33,9 +33,8 @@ export const setLoading = (): TAuthPendingAction => ({
   type: AUTH_PENDING
 });
 
-export const setError = (err: TError | undefined): TAuthErrorAction => ({
-  type: AUTH_ERROR,
-  payload: err
+export const setError = (): TAuthErrorAction => ({
+  type: AUTH_ERROR
 });
 
 export const setAuthData = (data: TAuthData | undefined): TAuthFulfilledAction => ({
@@ -51,7 +50,8 @@ export const register: AppThunk = (email: string, password: string, name: string
     dispatch(setAuthData({ user, accessToken }));
     localStorage.setItem('refreshToken', refreshToken);
   } catch (err: any) {
-    dispatch(setError(err.response));
+    dispatch(setLastError(err));
+    dispatch(setError());
   }
 };
 
@@ -63,7 +63,8 @@ export const login: AppThunk = (email: string, password: string) => async (dispa
     dispatch(setAuthData({ user, accessToken }));
     localStorage.setItem('refreshToken', refreshToken);
   } catch (err: any) {
-    dispatch(setError(err.response));
+    dispatch(setLastError(err));
+    dispatch(setError());
   }
 };
 
@@ -75,7 +76,8 @@ export const getUser: AppThunk = () => async (dispatch: AppDispatch, getState) =
     const { user } = await api.auth.get();
     dispatch(setAuthData({ ...auth, user }));
   } catch (err: any) {
-    dispatch(setError(err.response));
+    dispatch(setLastError(err));
+    dispatch(setError());
   }
 };
 
@@ -95,7 +97,8 @@ export const refresh: AppThunk = () => async (dispatch: AppDispatch, getState) =
 
     dispatch(setAuthData({ ...auth, accessToken }));
   } catch (err: any) {
-    dispatch(setError(err.response));
+    dispatch(setLastError(err));
+    dispatch(setError());
   }
 };
 
@@ -113,7 +116,8 @@ export const logout: AppThunk = (cb) => async (dispatch: AppDispatch) => {
 
     dispatch(setAuthData(undefined));
   } catch (err: any) {
-    dispatch(setError(err.response));
+    dispatch(setLastError(err));
+    dispatch(setError());
   }
 
   if (cb) {
@@ -129,6 +133,7 @@ export const update: AppThunk = (data: TUpdateProps) => async (dispatch: AppDisp
     const { user } = await api.auth.update(data);
     dispatch(setAuthData({ ...auth, user }));
   } catch (err: any) {
-    dispatch(setError(err.response));
+    dispatch(setLastError(err));
+    dispatch(setError());
   }
 };

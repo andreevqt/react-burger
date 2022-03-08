@@ -1,5 +1,6 @@
-import api, { TError, TIngredient } from '../api';
+import api, { TIngredient } from '../api';
 import { AppThunk } from '../store';
+import { setLastError } from './common';
 
 export const GET_ITEMS_PENDING: 'GET_ITEMS_PENDING' = 'GET_ITEMS_PENDING';
 export const GET_ITEMS_FULFILLED: 'GET_ITEMS_FULFILLED' = 'GET_ITEMS_FULFILLED';
@@ -19,7 +20,6 @@ export type TGetItemsFulFilledAction = {
 
 export type TGetItemsErrorAction = {
   readonly type: typeof GET_ITEMS_ERROR;
-  readonly payload: TError | undefined;
 };
 
 export type TIncrementItemAction = {
@@ -49,9 +49,8 @@ export const setItems = (items: TIngredient[]): TGetItemsFulFilledAction => ({
   payload: items,
 });
 
-export const setError = (err: TError | undefined): TGetItemsErrorAction => ({
+export const setError = (): TGetItemsErrorAction => ({
   type: GET_ITEMS_ERROR,
-  payload: err,
 });
 
 export const setLoading = (): TGetItemsPendingAction => ({
@@ -84,6 +83,7 @@ export const getItems: AppThunk = () => async (dispatch, getState) => {
     const items = await api.ingredients.list();
     dispatch(setItems(items));
   } catch (err: any) {
-    dispatch(setError(err.message));
+    dispatch(setLastError(err))
+    dispatch(setError());
   }
 };

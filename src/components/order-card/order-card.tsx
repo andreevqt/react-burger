@@ -19,7 +19,7 @@ const OrderCard: React.FC<TOrderProps> = ({
   onClick,
   showStatus = false
 }) => {
-  const { ingredients, collect, calculateAmount } = useIngredients();
+  const { items, collect, calculateAmount } = useIngredients();
 
   const cardClasses = classNames(orderCardStyles['card'], 'p-6 mb-4');
   const dateClasses = classNames(orderCardStyles['date'], 'text text_type_main-default text_color_inactive');
@@ -60,7 +60,7 @@ const OrderCard: React.FC<TOrderProps> = ({
       images,
       totalAmount
     };
-  }, [ingredients, calculateAmount, collect, moreClasses, order.ingredients]);
+  }, [items, calculateAmount, collect, moreClasses, order.ingredients]);
 
   const date = useMemo(() => formatTime(order.createdAt), [order.createdAt]);
 

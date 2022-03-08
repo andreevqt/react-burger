@@ -18,11 +18,11 @@ const OrderInfo: React.FC<TOrderInfoProps> = ({
   order,
   withinModal = false
 }) => {
-  const { ingredients, collect, calculateAmount } = useIngredients();
+  const { items, collect, calculateAmount } = useIngredients();
 
   const ingredientsToRender = useMemo(
     () => collect(order.ingredients),
-    [order.ingredients, ingredients, collect]
+    [order.ingredients, items, collect]
   );
 
   const date = useMemo(

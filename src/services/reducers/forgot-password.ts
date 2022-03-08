@@ -8,13 +8,11 @@ import {
 
 type TForgotPasswordState = {
   isLoading: boolean;
-  error: object | string | undefined;
   step: Step;
 };
 
 const initialState: TForgotPasswordState = {
   isLoading: false,
-  error: undefined,
   step: Step.CODE
 };
 
@@ -24,8 +22,7 @@ const forgotPassword = (state = initialState, action: TForgotPasswordActions): T
       return { ...state, isLoading: true };
     }
     case FORGOT_PASSWORD_ERROR: {
-      const error = action.payload;
-      return { ...initialState, error };
+      return initialState;
     }
     case FORGOT_PASSWORD_FULFILLED: {
       return {

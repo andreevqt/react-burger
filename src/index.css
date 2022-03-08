@@ -68,6 +68,7 @@
 
 .modal-is-shown {
   overflow: hidden;
+  padding-right: 17px;
 }
 
 /* fix width according to figma template */

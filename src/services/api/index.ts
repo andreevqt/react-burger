@@ -86,7 +86,12 @@ export type TOrdersMessage = TResponse & {
   totalToday: number;
 };
 
-export type TError = string | object;
+export type TError = string | {
+  message: string;
+  response?: {
+    message: string
+  }
+};
 
 export type TUpdateProps = {
   name?: string;

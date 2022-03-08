@@ -1,33 +1,22 @@
 import { useDispatch, useSelector } from '../services/store';
 
-import { setError as setIngredientsError } from '../services/actions/ingredients';
-import { setError as setOrderError } from '../services/actions/order';
-import { setError as setAuthError } from '../services/actions/auth';
-import { setError as setPasswordError } from '../services/actions/forgot-password';
+import { setLastError } from '../services/actions/common';
 
 const useError = () => {
   const error = useSelector(
-    (store: any) => {
-      const err = store.ingredients.error
-        || store.order.error
-        || store.auth.error
-        || store.forgotPassword.error;
+    (store) => {
+      const err = store.common.lastErr
 
-      if (!err) {
-        return null;
-      }
-
-      return typeof err === 'object' ? err.message : err;
+      return typeof err === 'object'
+        ? (err.response ? err.response.message : err.message)
+        : err;
     }
   );
 
   const dispatch = useDispatch();
 
   const clearError = () => {
-    dispatch(setIngredientsError(undefined));
-    dispatch(setOrderError(undefined));
-    dispatch(setAuthError(undefined));
-    dispatch(setPasswordError(undefined));
+    dispatch(setLastError(undefined));
   };
 
   return {
