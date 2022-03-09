@@ -41,6 +41,7 @@ export const login: AppThunk = (email: string, password: string) => async (dispa
 
   try {
     const { user, accessToken, refreshToken } = await api.auth.login(email, password);
+    console.log('here');
     dispatch(setAuthData({ user, accessToken }));
     localStorage.setItem('refreshToken', refreshToken);
   } catch (err: any) {

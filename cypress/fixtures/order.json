@@ -1,0 +1,6 @@
+{
+  "name": "Some burger",
+  "order": {
+    "number": 123
+  }
+}

@@ -2,13 +2,24 @@ Cypress.on('uncaught:exception', (err, runnable) => {
   return false;
 });
 
+const clear = Cypress.LocalStorage.clear;
+
+Cypress.LocalStorage.clear = (keys, ls, rs) => {
+  if (keys) {
+    return clear.apply(this, arguments);
+  }
+};
+
 context('burger-constructor page', () => {
-  before(() => {
-    // visit page before each case;
-    cy.visit('http://localhost:3000');
+  beforeEach(() => {
+    cy.intercept('GET', '**/ingredients', { fixture: 'ingredients.json' }).as('stubbedIngredients');
+    cy.intercept('POST', '**/login', { fixture: 'user.json', statusCode: 200 }).as('stubbedLogin');
+    cy.intercept('POST', '**/orders', { fixture: 'order.json', statusCode: 200 }).as('stubbedOrder');
+    cy.intercept('POST', '**/token', { fixture: 'refresh.json', statusCode: 200 }).as('stubbedRefresh');
   });
 
   it('should contain page title', () => {
+    cy.visit('http://localhost:3000');
     cy.contains('Соберите бургер');
   });
 
@@ -69,7 +80,7 @@ context('burger-constructor page', () => {
 
   it('should login and then redirect to constructor page', () => {
     cy.get('input[name="email"]')
-      .type('john.doe@gmail.com');
+      .type('jdoe@yahoo.com');
     cy.get('input[name="password"]')
       .type('12345');
     cy.get('button[type="submit"]')
@@ -82,7 +93,7 @@ context('burger-constructor page', () => {
       .contains('Оформить заказ')
       .click();
 
-    cy.wait(20000);
+    cy.wait(5000);
 
     cy.get('[data-test="modal"]')
       .contains('идентификатор заказа');
