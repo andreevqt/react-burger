@@ -5,16 +5,16 @@ import {
   THistoryActions,
   HISTORY_WS_MESSAGE,
   HISTORY_WS_SUCCESS
-} from '../actions/history';
+} from '../action-types/history';
 
-type THistoryState = {
+export type THistoryState = {
   connected: boolean;
   orders: TOrder[];
   total: number;
   totalToday: number;
 };
 
-const initialState: THistoryState = {
+export const initialState: THistoryState = {
   connected: false,
   orders: [],
   total: 0,
@@ -38,7 +38,10 @@ const history = (state: THistoryState = initialState, action: THistoryActions): 
     }
     case HISTORY_WS_ERROR:
     case HISTORY_WS_CLOSED: {
-      return initialState;
+      return {
+        ...state,
+        connected: false
+      };
     }
     default: {
       return state;

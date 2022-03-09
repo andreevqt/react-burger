@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import {
-  Router
+  BrowserRouter as Router
 } from 'react-router-dom';
 import useAuth from '../../hooks/use-auth';
 import WithLoader from '../with-loader/with-loader';
-import history from '../../services/history/history';
 import CustomSwitch from '../custom-switch/custom-switch';
 import useIngredients from '../../hooks/use-ingredients';
 
@@ -19,7 +18,7 @@ const App: React.FC = () => {
 
   return (
     <WithLoader isLoading={isLoading}>
-      <Router history={history}>
+      <Router>
         <CustomSwitch />
       </Router>
     </WithLoader>

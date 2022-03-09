@@ -1,33 +1,24 @@
-import { TError, TOrder } from '../api';
+import { TOrder } from '../api';
 import {
   TOrderInfoActions,
   ORDER_INFO_ERROR,
   ORDER_INFO_FULFILLED,
   ORDER_INFO_PENING,
   ORDER_INFO_CLEAR
-} from '../actions/order-info';
+} from '../action-types/order-info';
 
-type TOrderInfoState = {
+export type TOrderInfoState = {
   order: TOrder | undefined;
   isPending: boolean;
-  error: TError | undefined;
 };
 
-const initialState: TOrderInfoState = {
+export const initialState: TOrderInfoState = {
   order: undefined,
   isPending: false,
-  error: undefined
 };
 
 const orderInfo = (state = initialState, action: TOrderInfoActions): TOrderInfoState => {
   switch (action.type) {
-    case ORDER_INFO_ERROR: {
-      const error = action.payload;
-      return {
-        ...initialState,
-        error
-      };
-    }
     case ORDER_INFO_PENING: {
       return {
         ...state,
@@ -42,6 +33,7 @@ const orderInfo = (state = initialState, action: TOrderInfoActions): TOrderInfoS
         order
       };
     }
+    case ORDER_INFO_ERROR:
     case ORDER_INFO_CLEAR: {
       return initialState;
     }

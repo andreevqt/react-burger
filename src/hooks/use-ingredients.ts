@@ -18,21 +18,14 @@ const useIngredients = () => {
   const dispatch = useDispatch();
 
   const {
-    ingredients,
-    isLoading,
-    bun,
-    error
-  } = useSelector((store) => ({
-    ingredients: store.ingredients.items,
-    isLoading: store.ingredients.isLoading,
-    bun: store.ingredients.bun,
-    error: store.ingredients.error
-  }));
+    items,
+    isLoading
+  } = useSelector((store) => store.ingredients);
 
   const getItems = () => dispatch(getItemsAction());
 
   const collect = (ids: string[]) => {
-    const ingredientsCpy = ingredients.map((item) => ({ ...item }));
+    const ingredientsCpy = items.map((item) => ({ ...item }));
     return ids
       .map((id) => ingredientsCpy.find((ingredient) => ingredient._id === id))
       .reduce((acc: TIngredient[], current) => {
@@ -53,13 +46,11 @@ const useIngredients = () => {
   const calculateAmount = (items: TIngredient[]) => items.reduce((acc, current) => acc + (current ? current.price * (current.count || 1) : 0), 0);
 
   return {
-    ingredients,
+    items,
     isLoading,
-    bun,
     getItems,
     collect,
     calculateAmount,
-    error
   };
 };
 

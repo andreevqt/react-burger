@@ -29,17 +29,15 @@ const DynamicCol: React.FC<TDynamicColProps> = ({
     <div className={classNames(dynamicColStyles['wrapper'], 'custom-scroll')}>
       <h5 className="text text_type_main-medium mb-6">{label}</h5>
       <div className={dynamicColStyles['columns']}>
-        {
-          itemsToRender.map((column, i) => (
-            <div className={dynamicColStyles['column']} key={i}>
-              {column.map((item, j) => (
-                <div className={itemClasses} key={j}>
-                  {item}
-                </div>
-              ))}
-            </div>
-          ))
-        }
+        {itemsToRender.map((column, i) => (
+          <div className={dynamicColStyles['column']} key={i}>
+            {column.map((item, j) => (
+              <div className={itemClasses} key={j}>
+                {item}
+              </div>
+            ))}
+          </div>
+        ))}
       </div>
     </div>
   );

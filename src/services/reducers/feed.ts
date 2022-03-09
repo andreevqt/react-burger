@@ -1,15 +1,20 @@
-
-import { FEED_WS_CLOSED, FEED_WS_ERROR, TFeedActions, FEED_WS_MESSAGE, FEED_WS_SUCCESS } from '../actions/feed';
 import { TOrder } from '../api';
+import {
+  FEED_WS_CLOSED,
+  FEED_WS_ERROR,
+  FEED_WS_MESSAGE,
+  FEED_WS_SUCCESS,
+  TFeedActions
+} from '../action-types/feed';
 
-type TFeedState = {
+export type TFeedState = {
   connected: boolean;
   orders: TOrder[];
   total: number;
   totalToday: number;
 };
 
-const initialState: TFeedState = {
+export const initialState: TFeedState = {
   connected: false,
   orders: [],
   total: 0,

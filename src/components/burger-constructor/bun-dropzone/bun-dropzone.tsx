@@ -30,6 +30,7 @@ const BunDropzone: React.FC<TBunDropzoneProps> = ({
     <div
       className={classNames('pr-4', 'pl-12', bunDropzoneStyles['item'], className)}
       ref={ref}
+      data-test="bun-dropzone"
     >
       {bun ? (
         <ConstructorElement

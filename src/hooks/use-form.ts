@@ -95,6 +95,7 @@ const useForm = ({ initialValues }: { initialValues: TFields }) => {
     };
 
     return {
+      name: name as string,
       onChange,
       onBlur,
       value: fields[name]

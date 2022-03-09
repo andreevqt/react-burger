@@ -1,20 +1,18 @@
+import { Step } from '../action-types/forgot-password';
 import {
   FORGOT_PASSWORD_ERROR,
   FORGOT_PASSWORD_FULFILLED,
   FORGOT_PASSWORD_PENDING,
   TForgotPasswordActions,
-  Step
-} from '../actions/forgot-password';
+} from '../action-types/forgot-password';
 
-type TForgotPasswordState = {
+export type TForgotPasswordState = {
   isLoading: boolean;
-  error: object | string | undefined;
   step: Step;
 };
 
-const initialState: TForgotPasswordState = {
+export const initialState: TForgotPasswordState = {
   isLoading: false,
-  error: undefined,
   step: Step.CODE
 };
 
@@ -24,8 +22,7 @@ const forgotPassword = (state = initialState, action: TForgotPasswordActions): T
       return { ...state, isLoading: true };
     }
     case FORGOT_PASSWORD_ERROR: {
-      const error = action.payload;
-      return { ...initialState, error };
+      return initialState;
     }
     case FORGOT_PASSWORD_FULFILLED: {
       return {

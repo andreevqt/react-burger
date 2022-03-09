@@ -1,50 +1,27 @@
-import api, { TError } from '../api';
+import api from '../api';
 import { AppThunk } from '../store';
 import { reset } from './burger-constructor';
 import { clearCount } from './ingredients';
-
-export const SUBMIT_ORDER_PENDING: 'SUBMIT_ORDER_PENDING' = 'SUBMIT_ORDER_PENDING';
-export const SUBMIT_ORDER_FULFILLED: 'SUBMIT_ORDER_FULFILLED' = 'SUBMIT_ORDER_FULFILLED';
-export const SUBMIT_ORDER_ERROR: 'SUBMIT_ORDER_ERROR' = 'SUBMIT_ORDER_ERROR';
-export const CLEAR_ORDER: 'CLEAR_ORDER' = 'CLEAR_ORDER';
-
-export type TOrder = {
-  name: string;
-  id: number;
-};
-
-export type TSubmitOrderPendingAction = {
-  readonly type: typeof SUBMIT_ORDER_PENDING;
-};
-
-export type TSubmitOrderErrorAction = {
-  readonly type: typeof SUBMIT_ORDER_ERROR;
-  payload: TError | undefined;
-};
-
-export type TSubmitOrderFulfilledAction = {
-  readonly type: typeof SUBMIT_ORDER_FULFILLED;
-  payload: TOrder;
-};
-
-export type TSubmitOrderClearAction = {
-  readonly type: typeof CLEAR_ORDER;
-};
-
-export type TOrderActions =
-  | TSubmitOrderPendingAction
-  | TSubmitOrderFulfilledAction
-  | TSubmitOrderErrorAction
-  | TSubmitOrderClearAction;
+import { setLastError } from './common';
+import {
+  SUBMIT_ORDER_ERROR,
+  SUBMIT_ORDER_FULFILLED,
+  SUBMIT_ORDER_PENDING,
+  CLEAR_ORDER,
+  TOrder,
+  TSubmitOrderClearAction,
+  TSubmitOrderErrorAction,
+  TSubmitOrderFulfilledAction,
+  TSubmitOrderPendingAction
+} from '../action-types/order'
 
 export const setOrder = (order: TOrder): TSubmitOrderFulfilledAction => ({
   type: SUBMIT_ORDER_FULFILLED,
   payload: order
 });
 
-export const setError = (err: TError | undefined): TSubmitOrderErrorAction => ({
+export const setError = (): TSubmitOrderErrorAction => ({
   type: SUBMIT_ORDER_ERROR,
-  payload: err
 });
 
 export const setLoading = (): TSubmitOrderPendingAction => ({
@@ -75,6 +52,7 @@ export const submitOrder: AppThunk = () => async (dispatch, getState) => {
     dispatch(reset());
     dispatch(clearCount());
   } catch (err: any) {
-    dispatch(setError(err.message));
+    dispatch(setLastError(err));
+    dispatch(setError());
   }
 };

@@ -4,13 +4,15 @@ import { compose, createStore, applyMiddleware, ActionCreator } from 'redux';
 import error from '../middleware/error';
 import ws from '../middleware/ws';
 import rootReducer from '../reducers';
-import { TConstructorActions } from '../actions/burger-constructor';
-import { TForgotPasswordActions } from '../actions/forgot-password';
-import { TIngredientActions } from '../actions/ingredients';
-import { TOrderActions } from '../actions/order';
-import { TFeedActions } from '../actions/feed';
-import { TOrderInfoActions } from '../actions/order-info';
-import { THistoryActions } from '../actions/history';
+import { TAuthActions } from '../action-types/auth';
+import { TConstructorActions } from '../action-types/burger-constructor';
+import { TForgotPasswordActions } from '../action-types/forgot-password';
+import { TIngredientActions } from '../action-types/ingredients';
+import { TOrderActions } from '../action-types/order';
+import { TFeedActions } from '../action-types/feed';
+import { TOrderInfoActions } from '../action-types/order-info';
+import { THistoryActions } from '../action-types/history';
+import { TCommonActions } from '../action-types/common';
 
 type TApplicationActions =
   | TConstructorActions
@@ -19,7 +21,9 @@ type TApplicationActions =
   | TOrderActions
   | TOrderInfoActions
   | TFeedActions
-  | THistoryActions;
+  | THistoryActions
+  | TCommonActions
+  | TAuthActions;
 
 const composeEnhancers = typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && process.env.NODE_ENV === 'development'
   ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})

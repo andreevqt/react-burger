@@ -28,7 +28,7 @@ const IngredientsDropzone: React.FC<TIngredientsDropzoneProps> = ({
   });
 
   return (
-    <div className={classNames(ingredientsDropzoneStyles['wrapper'], 'mt-4', 'mb-4')} ref={ref}>
+    <div className={classNames(ingredientsDropzoneStyles['wrapper'], 'mt-4', 'mb-4')} ref={ref} data-test="ingredient-dropzone">
       <CustomScroll className={classNames(ingredientsDropzoneStyles['scroll'], 'pl-4')}>
         {(items.length > 0) ? items.map((item, index) => (
           <SortableIngredient

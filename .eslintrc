@@ -1,7 +1,11 @@
 {
   "root": true,
+  "plugins": [
+    "cypress"
+  ],
   "extends": [
     "react-app",
-    "react-app/jest"
+    "react-app/jest",
+    "plugin:cypress/recommended"
   ]
 }

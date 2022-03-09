@@ -7,6 +7,7 @@ import forgotPassword from './forgot-password';
 import feed from './feed';
 import orderInfo from './order-info';
 import history from './history';
+import common from './common';
 
 export default combineReducers({
   ingredients,
@@ -16,5 +17,6 @@ export default combineReducers({
   feed,
   orderInfo,
   history,
-  forgotPassword
+  forgotPassword,
+  common
 });

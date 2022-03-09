@@ -8,14 +8,14 @@ import { TIngredient } from '../../services/api';
 const IngredientModal: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const history = useHistory();
-  const { ingredients } = useIngredients();
+  const { items } = useIngredients();
 
   const ingredient = useMemo(
-    () => ingredients.find((item: TIngredient) => item._id === id),
-    [id, ingredients]
+    () => items.find((item: TIngredient) => item._id === id),
+    [id, items]
   );
 
-  const closeModal = () => history.replace({ pathname: '/' });
+  const closeModal = () => history.goBack();
 
   return ingredient ? (
     <Modal

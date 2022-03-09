@@ -5,29 +5,20 @@ import {
   CLEAR_ORDER,
   TOrderActions,
   TOrder
-} from '../actions/order';
+} from '../action-types/order';
 
-type TOrderState = {
-  error: string | object | undefined;
+export type TOrderState = {
   order: TOrder | undefined;
   isLoading: boolean;
 };
 
-const initialState: TOrderState = {
-  error: undefined,
+export const initialState: TOrderState = {
   order: undefined,
-  isLoading: false,
+  isLoading: false
 };
 
 const order = (state: TOrderState = initialState, action: TOrderActions): TOrderState => {
   switch (action.type) {
-    case SUBMIT_ORDER_ERROR: {
-      const error = action.payload;
-      return {
-        ...initialState,
-        error,
-      };
-    }
     case SUBMIT_ORDER_PENDING: {
       return { ...state, isLoading: true };
     }
@@ -36,11 +27,12 @@ const order = (state: TOrderState = initialState, action: TOrderActions): TOrder
       return {
         ...state,
         isLoading: false,
-        order,
+        order
       };
     }
+    case SUBMIT_ORDER_ERROR:
     case CLEAR_ORDER: {
-      return { ...state, order: undefined };
+      return initialState;
     }
     default:
       return state;

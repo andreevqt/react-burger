@@ -1,28 +1,27 @@
-import { AUTH_ERROR, AUTH_FULFILLED, AUTH_PENDING, TAuthActions } from '../actions/auth';
+import {
+  AUTH_ERROR,
+  AUTH_FULFILLED,
+  AUTH_PENDING,
+  TAuthActions
+} from '../action-types/auth';
 import { TUser } from '../api'
 
-type TAuthState = {
+export type TAuthState = {
   isLoading: boolean;
   accessToken: string | undefined;
   user: TUser | undefined;
-  error: Object | string | undefined;
 };
 
-const initialState: TAuthState = {
+export const initialState: TAuthState = {
   isLoading: false,
   accessToken: undefined,
   user: undefined,
-  error: undefined
 };
 
 const auth = (state: TAuthState = initialState, action: TAuthActions): TAuthState => {
   switch (action.type) {
     case AUTH_ERROR: {
-      const error = action.payload;
-      return {
-        ...initialState,
-        error
-      };
+      return initialState;
     }
     case AUTH_PENDING: {
       return {
