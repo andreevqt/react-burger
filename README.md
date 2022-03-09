@@ -1,7 +1,7 @@
 # Stellar Burgers
 
 Проект, выполненный в рамках курса React-разработчик<br>
-[Веб-сайт](http://stellar-burgers.nomoredomains.work)
+[Веб-сайт](http://burger.kino-reaction.ru)
 
 ## Доступные команды
 
