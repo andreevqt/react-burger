@@ -57,7 +57,7 @@ export const getUser: AppThunk = () => async (dispatch: AppDispatch, getState) =
     const { user } = await api.auth.get();
     dispatch(setAuthData({ ...auth, user }));
   } catch (err: any) {
-    dispatch(setLastError(err));
+    dispatch(setLastError(undefined));
     dispatch(setError());
   }
 };

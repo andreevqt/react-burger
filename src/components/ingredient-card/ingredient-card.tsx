@@ -33,6 +33,7 @@ const IngredientCard: React.FC<TIngredientCardProps> = ({
 
   return (
     <div
+      data-test="ingredient-card"
       className={ingredientCardStyles['card']}
       onClick={onClick}
       ref={ref}

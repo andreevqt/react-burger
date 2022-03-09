@@ -39,7 +39,7 @@ const Modal: React.FC<TModalProps> = ({
 
   return containerRef.current ? ReactDOM.createPortal(
     (
-      <div className={modalStyles['modal']}>
+      <div data-test="modal" className={modalStyles['modal']}>
         <ModalOverlay onRequestClose={onRequestClose} />
         <div className={`${modalStyles['content']} ${className}`}>
           <ModalCloseBtn onClick={onRequestClose} />

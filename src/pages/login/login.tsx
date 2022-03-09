@@ -67,7 +67,7 @@ const Login = () => {
                     {...register('password', { required: true })}
                   />
                 </div>
-                <Button size="large">
+                <Button size="large" htmlType="submit">
                   Войти
                 </Button>
               </>
