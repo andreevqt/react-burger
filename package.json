@@ -16,6 +16,7 @@
     "@ya.praktikum/react-developer-burger-ui-components": "1.13.1",
     "classnames": "2.3.1",
     "lodash.isequal": "4.5.0",
+    "moment": "2.29.1",
     "nanoid": "3.1.30",
     "react": "^16.8.6",
     "react-dnd": "14.0.4",
@@ -27,10 +28,10 @@
     "redux": "4.1.2",
     "redux-thunk": "2.4.1",
     "typescript": "^4.5.2",
-    "web-vitals": "^1.1.2",
-    "moment": "2.29.1"
+    "web-vitals": "^1.1.2"
   },
   "scripts": {
+    "cypress:open": "cypress open",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -47,5 +48,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cypress": "9.5.1",
+    "eslint-plugin-cypress": "2.12.1"
   }
 }
