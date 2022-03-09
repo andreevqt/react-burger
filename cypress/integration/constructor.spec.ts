@@ -1,11 +1,13 @@
+//@ts-ignore
 Cypress.on('uncaught:exception', (err, runnable) => {
   return false;
 });
 
 const clear = Cypress.LocalStorage.clear;
 
-Cypress.LocalStorage.clear = (keys, ls, rs) => {
+Cypress.LocalStorage.clear = (keys) => {
   if (keys) {
+    //@ts-ignore
     return clear.apply(this, arguments);
   }
 };
@@ -92,9 +94,6 @@ context('burger-constructor page', () => {
     cy.get('button')
       .contains('Оформить заказ')
       .click();
-
-    cy.wait(5000);
-
     cy.get('[data-test="modal"]')
       .contains('идентификатор заказа');
   });
