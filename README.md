@@ -2,8 +2,7 @@
 
 ![CI](https://github.com/qprquo/react-burger/actions/workflows/build_test_react.yml/badge.svg)
 
-Проект, выполненный в рамках курса React-разработчик<br>
-[Веб-сайт](http://burger.kino-reaction.ru)
+[Проект](http://burger.kino-reaction.ru), выполненный в рамках курса React-разработчик<br>
 
 ## Доступные команды
 
