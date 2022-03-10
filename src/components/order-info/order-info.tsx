@@ -8,6 +8,7 @@ import TotalPrice from '../total-price/total-price';
 import Status from '../status/status';
 import orderInfoStyles from './order-info.module.css';
 import formatTime from '../../utils/format-time';
+import Seo from '../seo/seo';
 
 type TOrderInfoProps = {
   order: TOrder;
@@ -40,6 +41,7 @@ const OrderInfo: React.FC<TOrderInfoProps> = ({
 
   return (
     <div>
+      <Seo title={order.name}/>
       <div className={idClasses}>
         #{order.number}
       </div>

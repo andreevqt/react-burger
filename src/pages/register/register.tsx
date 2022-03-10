@@ -6,6 +6,7 @@ import Base from '../../components/layout/base/base';
 import InputPassword from '../../components/input-password/input-password';
 import useForm, { TFields } from '../../hooks/use-form';
 import useAuth from '../../hooks/use-auth';
+import Seo from '../../components/seo/seo';
 
 const Register: React.FC = () => {
   const auth = useAuth();
@@ -36,6 +37,7 @@ const Register: React.FC = () => {
 
   return (
     <Base>
+      <Seo title="Регистрация"/>
       <RegisterForm
         onSubmit={handleSubmit(onSubmit)}
         header={(

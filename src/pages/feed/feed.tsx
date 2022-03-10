@@ -7,6 +7,7 @@ import OrderCard from '../../components/order-card/order-card';
 import useFeed from '../../hooks/use-feed';
 import CustomScroll from '../../components/custom-scroll/custom-scroll';
 import DynamicCol from '../../components/dynamic-col/dynamic-col';
+import Seo from '../../components/seo/seo';
 
 const Feed: React.FC = () => {
   const { init, close, orders, total, totalToday } = useFeed();
@@ -37,6 +38,7 @@ const Feed: React.FC = () => {
 
   return (
     <Base>
+      <Seo title="Лента заказов"/>
       <h5 className="text text_type_main-large mb-6 mt-10">
         Лента заказов
       </h5>

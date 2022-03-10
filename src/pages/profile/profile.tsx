@@ -8,6 +8,7 @@ import useForm, { TFields } from '../../hooks/use-form';
 import ProfileLayout from '../../components/layout/profile/profile';
 import Row from '../../components/grid/row/row';
 import Col from '../../components/grid/col/col';
+import Seo from '../../components/seo/seo';
 
 const Profile = () => {
   const { user, update } = useAuth();
@@ -39,54 +40,57 @@ const Profile = () => {
     <ProfileLayout
       description="В этом разделе вы можете изменить свои персональные данные"
       content={(
-        <Row>
-          <Col>
-            <RegisterForm
-              onSubmit={handleSubmit(onSubmit)}
-              body={(
-                <>
-                  <div className="mb-6">
-                    <InputEditable
-                      placeholder="Имя"
-                      {...register('name', { required: true })}
-                      onDelete={clearField('name')}
-                      error={!!errors.name}
-                      errorText={errors.name}
-                    />
-                  </div>
-                  <div className="mb-6">
-                    <InputEditable
-                      placeholder="Логин"
-                      {...register('email', { required: true, email: true })}
-                      onDelete={clearField('email')}
-                      error={!!errors.email}
-                      errorText={errors.email}
-                    />
-                  </div>
-                  <div className="mb-6">
-                    <InputEditable
-                      type="password"
-                      onDelete={clearField('password')}
-                      placeholder="Пароль"
-                      {...register('password')}
-                    />
-                  </div>
-                  {isDirty && (
-                    <div className={profileStyles['buttons']}>
-                      <Button type="secondary" size="large" htmlType="button" onClick={clear}>
-                        Отмена
-                      </Button>
-                      <Button size="large" htmlType="submit">
-                        Сохранить
-                      </Button>
+        <>
+          <Seo title="Профиль" />
+          <Row>
+            <Col>
+              <RegisterForm
+                onSubmit={handleSubmit(onSubmit)}
+                body={(
+                  <>
+                    <div className="mb-6">
+                      <InputEditable
+                        placeholder="Имя"
+                        {...register('name', { required: true })}
+                        onDelete={clearField('name')}
+                        error={!!errors.name}
+                        errorText={errors.name}
+                      />
                     </div>
-                  )}
-                </>
-              )}
-            />
-          </Col>
-          <Col />
-        </Row>
+                    <div className="mb-6">
+                      <InputEditable
+                        placeholder="Логин"
+                        {...register('email', { required: true, email: true })}
+                        onDelete={clearField('email')}
+                        error={!!errors.email}
+                        errorText={errors.email}
+                      />
+                    </div>
+                    <div className="mb-6">
+                      <InputEditable
+                        type="password"
+                        onDelete={clearField('password')}
+                        placeholder="Пароль"
+                        {...register('password')}
+                      />
+                    </div>
+                    {isDirty && (
+                      <div className={profileStyles['buttons']}>
+                        <Button type="secondary" size="large" htmlType="button" onClick={clear}>
+                          Отмена
+                        </Button>
+                        <Button size="large" htmlType="submit">
+                          Сохранить
+                        </Button>
+                      </div>
+                    )}
+                  </>
+                )}
+              />
+            </Col>
+            <Col />
+          </Row>
+        </>
       )}
     />
   );

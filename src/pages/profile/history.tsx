@@ -4,6 +4,7 @@ import ProfileLayout from '../../components/layout/profile/profile';
 import useOrderHistory from '../../hooks/use-order-history';
 import OrderCard from '../../components/order-card/order-card';
 import CustomScroll from '../../components/custom-scroll/custom-scroll';
+import Seo from '../../components/seo/seo';
 
 const History: React.FC = () => {
   const { orders, init, close } = useOrderHistory();
@@ -31,18 +32,21 @@ const History: React.FC = () => {
     <ProfileLayout
       description="В этом разделе вы можете просмотреть свою историю заказов"
       content={
-        <CustomScroll className="mt-10" grow>
-          {
-            orders.map((order) => (
-              <OrderCard
-                key={order._id}
-                order={order}
-                showStatus
-                onClick={onOrderClick(order.number)}
-              />
-            ))
-          }
-        </CustomScroll>
+        <>
+          <Seo title="История заказов"/>
+          <CustomScroll className="mt-10" grow>
+            {
+              orders.map((order) => (
+                <OrderCard
+                  key={order._id}
+                  order={order}
+                  showStatus
+                  onClick={onOrderClick(order.number)}
+                />
+              ))
+            }
+          </CustomScroll>
+        </>
       }
     />
   );

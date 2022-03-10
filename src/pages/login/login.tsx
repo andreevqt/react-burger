@@ -9,6 +9,7 @@ import InputPassword from '../../components/input-password/input-password';
 import useForm, { TFields } from '../../hooks/use-form';
 import useAuth from '../../hooks/use-auth';
 import { TState } from '../../types/history';
+import Seo from '../../components/seo/seo';
 
 const Login = () => {
   const { login, user } = useAuth();
@@ -40,6 +41,7 @@ const Login = () => {
 
   return (
     <Base>
+      <Seo title="Вход"/>
       <Row>
         <Col mod="auto" align="center">
           <RegisterForm

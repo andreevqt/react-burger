@@ -11,6 +11,7 @@ import useForm, { TFields } from '../../hooks/use-form';
 import useAuth from '../../hooks/use-auth';
 import WithLoader from '../../components/with-loader/with-loader';
 import { Step } from '../../services/action-types/forgot-password';
+import Seo from '../../components/seo/seo';
 
 const ResetPassword: React.FC = () => {
   const { step, reset, isLoading } = useForgotPassword();
@@ -47,6 +48,7 @@ const ResetPassword: React.FC = () => {
   return (
     <WithLoader isLoading={isLoading}>
       <Base>
+        <Seo title="Восстановление пароля"/>
         <Row>
           <Col mod="auto" align="center">
             <RegisterForm

@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import ingredientDetailsStyles from './ingredient-details.module.css';
 import { TIngredient } from '../../services/api';
+import Seo from '../seo/seo';
 
 type TIngredientDetailsProps = {
   ingredient: TIngredient;
@@ -31,6 +32,7 @@ const IngredientDetails: React.FC<TIngredientDetailsProps> = ({
 
   return (
     <>
+      <Seo title={name} />
       <h5 className={titleClasses}>
         Детали ингредиента
       </h5>

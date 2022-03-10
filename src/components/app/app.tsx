@@ -6,6 +6,8 @@ import useAuth from '../../hooks/use-auth';
 import WithLoader from '../with-loader/with-loader';
 import CustomSwitch from '../custom-switch/custom-switch';
 import useIngredients from '../../hooks/use-ingredients';
+import { HelmetProvider } from 'react-helmet-async';
+import Seo from '../seo/seo';
 
 const App: React.FC = () => {
   const { isLoading, getUser } = useAuth();
@@ -17,11 +19,14 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <WithLoader isLoading={isLoading}>
-      <Router>
-        <CustomSwitch />
-      </Router>
-    </WithLoader>
+    <HelmetProvider>
+      <Seo />
+      <WithLoader isLoading={isLoading}>
+        <Router>
+          <CustomSwitch />
+        </Router>
+      </WithLoader>
+    </HelmetProvider>
   );
 };
 

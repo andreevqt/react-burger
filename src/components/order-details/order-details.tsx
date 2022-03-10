@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import orderDetailsStyles from './order-details.module.css';
 import img from '../../images/order-completed.svg';
+import Seo from '../seo/seo';
 
 type TOrderDetailsProps = {
   orderId: string;
@@ -13,6 +14,7 @@ const OrderDetails: React.FC<TOrderDetailsProps> = ({
   status
 }) => (
   <>
+    <Seo title="Детали заказа"/>
     <span className={classNames(orderDetailsStyles['id'], 'text text_glowing text_type_digits-large')}>
       {orderId}
     </span>

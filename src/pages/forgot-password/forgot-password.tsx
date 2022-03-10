@@ -8,6 +8,7 @@ import useAuth from '../../hooks/use-auth';
 import useForgotPassword from '../../hooks/use-forgot-password';
 import WithLoader from '../../components/with-loader/with-loader';
 import { Step } from '../../services/action-types/forgot-password';
+import Seo from '../../components/seo/seo';
 
 const ForgotPassword: React.FC = () => {
   const { register, errors, handleSubmit } = useForm({
@@ -44,6 +45,7 @@ const ForgotPassword: React.FC = () => {
   return (
     <WithLoader isLoading={isLoading}>
       <Base>
+        <Seo title="Восстановление пароля"/>
         <RegisterForm
           onSubmit={handleSubmit(onSubmit)}
           header={(

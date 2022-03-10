@@ -20,7 +20,7 @@ const Profile: React.FC<TProfileProps> = ({ description, content }) => {
         <Col mod="4">
           <Menu direction="column" size="big" className="mt-30">
             <MenuItem to="/profile" label="Профиль" />
-            <MenuItem to="/profile/orders" label="История заказа" />
+            <MenuItem to="/profile/orders" label="История заказов" />
             <MenuItem to="/logout" label="Выход" />
           </Menu>
           <p className={descriptionClasses}>
